@@ -6,6 +6,39 @@
     <title>Fabiano Cesar  | Desenvolvedor</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
+  <!-- inicio script -->
+<script>
+  const username = "facrf"; // eu
+  const container = document.getElementById("repos-container");
+
+  fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
+    .then(res => res.json())
+    .then(repos => {
+      repos.forEach(repo => {
+        // ignorar forks
+        if (repo.fork) return;
+
+        const card = document.createElement("div");
+        card.className = "bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition";
+
+        card.innerHTML = `
+          <h4 class="font-bold mb-2">${repo.name}</h4>
+          <p class="text-gray-700 text-sm mb-2">${repo.description || "Sem descrição."}</p>
+          <p class="text-xs text-gray-500 mb-2">Linguagem: ${repo.language || "N/A"}</p>
+          <a href="${repo.html_url}" target="_blank" class="text-blue-600 text-sm hover:underline">Ver no GitHub</a>
+        `;
+
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      container.innerHTML = "<p>Erro ao carregar projetos do GitHub.</p>";
+      console.error(err);
+    });
+</script> 
+<!-- fim script -->
+  
+  
   <body class="bg-gray-50 text-gray-800 font-sans">
 
     <!-- Header -->
