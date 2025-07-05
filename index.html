@@ -42,44 +42,19 @@
       </p>
     </section>
 
-    <!-- Projetos -->
-    <section id="projetos" class="bg-white py-16 px-6">
-      <div class="max-w-6xl mx-auto text-center">
-        <h3 class="text-2xl font-semibold mb-10">Projetos</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+    
+<!-- Projetos -->
+<section id="projetos" class="bg-white py-16 px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <h3 class="text-2xl font-semibold mb-10">Projetos</h3>
+    <div id="repos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+      <!-- Os projetos serão inseridos aqui via JavaScript -->
+    </div>
+  </div>
+</section>
 
-          <!-- Projeto 1 -->
-          <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h4 class="font-bold mb-2">Software de Colônia de Pescadores</h4>
-            <p class="text-gray-700 text-sm mb-2">
-              Sistema para administração de associados e integração com o MAPA (Ministério da Agricultura e Pecuária).
-            </p>
-            <p class="text-xs text-gray-500">Tecnologias: Delphi, Firebird</p>
-          </div>
 
-          <!-- Projeto 2 -->
-          <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h4 class="font-bold mb-2">App para Sindicatos e Colônias</h4>
-            <p class="text-gray-700 text-sm mb-2">
-              Gerencia associados, anuidades, documentação junto ao MAPA e alertas automáticos.
-            </p>
-            <p class="text-xs text-gray-500">Tecnologias: Java, Kotlin, SQLite</p>
-          </div>
-
-          <!-- Projeto 3 -->
-          <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h4 class="font-bold mb-2">Amigo do Pescador</h4>
-            <p class="text-gray-700 text-sm mb-2">
-              App informativo sobre marés, fases da lua e períodos de defeso no Brasil.
-            </p>
-            <p class="text-xs text-gray-500">Tecnologias: Android, Java, Kotlin, SQLite</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Contato -->
+<!-- Contato -->
     <section id="contato" class="py-16 px-6 bg-blue-50 text-center">
       <div class="max-w-xl mx-auto">
         <h3 class="text-2xl font-semibold mb-4">Entre em contato</h3>
@@ -98,5 +73,32 @@
       © 2025 Fabiano Cesar. Todos os direitos reservados.
     </footer>
 
-  </body>
+  
+<script>
+  const username = "facrf"; // seu usuário GitHub
+  const container = document.getElementById("repos-container");
+
+  fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
+    .then(res => res.json())
+    .then(repos => {
+      repos.forEach(repo => {
+        if (repo.fork) return;
+        const card = document.createElement("div");
+        card.className = "bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition";
+        card.innerHTML = `
+          <h4 class="font-bold mb-2">${repo.name}</h4>
+          <p class="text-gray-700 text-sm mb-2">${repo.description || "Sem descrição."}</p>
+          <p class="text-xs text-gray-500 mb-2">Linguagem: ${repo.language || "N/A"}</p>
+          <a href="${repo.html_url}" target="_blank" class="text-blue-600 text-sm hover:underline">Ver no GitHub</a>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      container.innerHTML = "<p>Erro ao carregar projetos do GitHub.</p>";
+      console.error(err);
+    });
+</script>
+</body>
+
 </html>
