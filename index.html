@@ -10,11 +10,18 @@
     <header class="bg-white shadow-md">
       <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
         <h1 class="text-xl font-bold">Fabiano Cesar</h1>
-        <nav class="space-x-4">
-          <a href="#sobre" class="hover:text-blue-600" data-lang="header_about"></a>
-          <a href="#projetos" class="hover:text-blue-600" data-lang="header_projects"></a>
-          <a href="#contato" class="hover:text-blue-600" data-lang="header_contact"></a>
-        </nav>
+        <div class="flex items-center space-x-4">
+          <nav class="space-x-4">
+            <a href="#sobre" class="hover:text-blue-600" data-lang="header_about"></a>
+            <a href="#projetos" class="hover:text-blue-600" data-lang="header_projects"></a>
+            <a href="#contato" class="hover:text-blue-600" data-lang="header_contact"></a>
+          </nav>
+          <div class="language-switcher space-x-2 text-xl">
+            <a href="#" class="lang-btn" data-lang-code="pt-br">🇧🇷</a>
+            <a href="#" class="lang-btn" data-lang-code="en">🇺🇸</a>
+            <a href="#" class="lang-btn" data-lang-code="es">🇪🇸</a>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -93,6 +100,7 @@
       const username = "facrf";
       const reposContainer = document.getElementById("repos-container");
       const elementsToTranslate = document.querySelectorAll("[data-lang]");
+      const langBtns = document.querySelectorAll(".lang-btn");
 
       function translatePage(translations, lang) {
         elementsToTranslate.forEach(element => {
@@ -103,26 +111,25 @@
         });
       }
 
-      function loadTranslationsAndRepos() {
-        const userLang = navigator.language || navigator.userLanguage;
-        let lang = userLang.split('-')[0]; // Ex: 'pt-BR' -> 'pt'
+      function loadTranslationsAndRepos(selectedLang = null) {
+        const userLang = selectedLang || navigator.language || navigator.userLanguage;
+        let lang = userLang.split('-')[0];
 
         fetch('traducoes.json')
           .then(res => res.json())
           .then(translations => {
-            // Verifica se a tradução completa (ex: pt-br) existe, senão usa a base (ex: pt)
             const chosenLang = translations[userLang.toLowerCase()] ? userLang.toLowerCase() : lang;
-            const fallbackLang = 'pt-br'; // Idioma padrão caso não encontre
+            const fallbackLang = 'pt-br';
 
             translatePage(translations, chosenLang in translations ? chosenLang : fallbackLang);
 
-            // Código existente para carregar projetos do GitHub
+            // Carregar projetos do GitHub
             fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
               .then(res => res.json())
               .then(repos => {
+                reposContainer.innerHTML = ''; // Limpa os projetos existentes
                 repos.forEach(repo => {
                   if (repo.fork) return;
-
                   const card = document.createElement("div");
                   card.className = "bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition";
 
@@ -149,6 +156,16 @@
           });
       }
 
+      // Adiciona o event listener para os botões de idioma
+      langBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const langCode = e.target.getAttribute('data-lang-code');
+          loadTranslationsAndRepos(langCode);
+        });
+      });
+
+      // Chama a função ao carregar a página pela primeira vez
       loadTranslationsAndRepos();
     </script>
   </body>
