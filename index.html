@@ -6,14 +6,17 @@
   <title>Fabiano Cesar | Desenvolvedor</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Configuração do Tailwind para dark mode baseado no sistema
     tailwind.config = {
-      darkMode: 'media', // detecta o preferido do sistema
-      theme: {
-        extend: {},
-      }
+      darkMode: 'media', // Detecta preferência do sistema
+      theme: { extend: {} },
     };
   </script>
+
+  <!-- Estilo para fade ao trocar idioma -->
+  <style>
+    .fade-text { transition: opacity 0.3s ease; opacity: 1; }
+    .fade-out { opacity: 0; }
+  </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-500">
 
@@ -21,16 +24,12 @@
   <header class="bg-white dark:bg-gray-800 shadow-md">
     <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
       <h1 class="text-xl font-bold">Fabiano Cesar</h1>
-      
       <div class="flex items-center space-x-4">
-        <!-- Menu de navegação -->
         <nav class="space-x-4">
-          <a href="#sobre" class="hover:text-blue-600 dark:hover:text-blue-400" data-lang="header_about">Sobre</a>
-          <a href="#projetos" class="hover:text-blue-600 dark:hover:text-blue-400" data-lang="header_projects">Projetos</a>
-          <a href="#contato" class="hover:text-blue-600 dark:hover:text-blue-400" data-lang="header_contact">Contato</a>
+          <a href="#sobre" class="hover:text-blue-600 dark:hover:text-blue-400 fade-text" data-lang="header_about">Sobre</a>
+          <a href="#projetos" class="hover:text-blue-600 dark:hover:text-blue-400 fade-text" data-lang="header_projects">Projetos</a>
+          <a href="#contato" class="hover:text-blue-600 dark:hover:text-blue-400 fade-text" data-lang="header_contact">Contato</a>
         </nav>
-
-        <!-- Language switcher -->
         <div class="language-switcher flex space-x-2 text-xl">
           <button class="lang-btn" data-lang-code="pt-br" aria-label="Português">
             <img src="/flags/br.svg" alt="Português (Brasil)" width="16" height="16">
@@ -48,28 +47,22 @@
 
   <!-- Hero Section -->
   <section class="text-center py-20 px-6 bg-blue-100 dark:bg-blue-900 transition-colors duration-500">
-    <h2 class="text-4xl font-bold mb-4" data-lang="hero_title">
-      Olá, eu sou Fabiano Cesar
-    </h2>
-    <p class="text-lg max-w-xl mx-auto mb-6" data-lang="hero_subtitle">
+    <h2 class="text-4xl font-bold mb-4 fade-text" data-lang="hero_title">Olá, eu sou Fabiano Cesar</h2>
+    <p class="text-lg max-w-xl mx-auto mb-6 fade-text" data-lang="hero_subtitle">
       Desenvolvedor full-stack focado em soluções modernas e eficientes.
     </p>
-    <a href="#contato" 
-       class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 transition" 
-       data-lang="hero_cta">
+    <a href="#contato" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 transition fade-text" data-lang="hero_cta">
       Fale comigo
     </a>
   </section>
 
   <!-- Sobre Section -->
   <section id="sobre" class="py-16 px-6 max-w-3xl mx-auto text-center">
-    <h3 class="text-2xl font-semibold mb-4" data-lang="about_title">
-      Sobre mim
-    </h3>
-    <p class="text-gray-700 dark:text-gray-300" data-lang="about_p1">
+    <h3 class="text-2xl font-semibold mb-4 fade-text" data-lang="about_title">Sobre mim</h3>
+    <p class="text-gray-700 dark:text-gray-300 fade-text" data-lang="about_p1">
       Sou desenvolvedor apaixonado por criar soluções que unem eficiência e experiência do usuário.
     </p>
-    <p class="mt-4 text-gray-700 dark:text-gray-300" data-lang="about_p2">
+    <p class="mt-4 text-gray-700 dark:text-gray-300 fade-text" data-lang="about_p2">
       Tenho experiência com aplicações web e mobile, sempre buscando novas tecnologias e boas práticas.
     </p>
   </section>
@@ -77,31 +70,23 @@
   <!-- Projetos Section -->
   <section id="projetos" class="bg-white dark:bg-gray-800 py-16 px-6 transition-colors duration-500">
     <div class="max-w-6xl mx-auto text-center">
-      <h3 class="text-2xl font-semibold mb-10" data-lang="projects_title">
-        Projetos Recentes
-      </h3>
-      <div id="repos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-        <!-- Cards GitHub via JS -->
-      </div>
+      <h3 class="text-2xl font-semibold mb-10 fade-text" data-lang="projects_title">Projetos Recentes</h3>
+      <div id="repos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left"></div>
     </div>
   </section>
 
   <!-- Projetos Legado -->
   <section id="projeto_legado" class="bg-white dark:bg-gray-800 py-16 px-6 transition-colors duration-500">
     <div class="max-w-6xl mx-auto text-center">
-      <h3 class="text-2xl font-semibold mb-10" data-lang="legacy_title">
-        Projetos Legados
-      </h3>
+      <h3 class="text-2xl font-semibold mb-10 fade-text" data-lang="legacy_title">Projetos Legados</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-
         <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
           <h4 class="font-bold mb-2">Software de Colônia de Pescadores (2004)</h4>
           <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
-            Sistema para administração de associados e integração com o MAPA (Ministério da Agricultura e Pecuária).
+            Sistema para administração de associados e integração com o MAPA.
           </p>
           <p class="text-xs text-gray-500 dark:text-gray-400">Tecnologias: Delphi, Firebird, Rational Rose</p>
         </div>
-
         <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
           <h4 class="font-bold mb-2">App para Sindicatos e Colônias (2017)</h4>
           <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
@@ -109,7 +94,6 @@
           </p>
           <p class="text-xs text-gray-500 dark:text-gray-400">Tecnologias: Java, Kotlin, SQLite, Rational Rose e Scrum</p>
         </div>
-
         <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
           <h4 class="font-bold mb-2">Amigo do Pescador (2020)</h4>
           <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
@@ -117,17 +101,15 @@
           </p>
           <p class="text-xs text-gray-500 dark:text-gray-400">Tecnologias: Android, Java, Kotlin, SQLite</p>
         </div>
-
         <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
           <h4 class="font-bold mb-2">Outros projetos para terceiros (1997-2025)</h4>
           <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
-            Aplicativos e sites de corretores de seguro saúde, sistemas para universitários, até manutenção de apps comerciais com Delphi e C#.
+            Aplicativos e sites de corretores de seguro saúde, sistemas universitários, manutenção de apps comerciais.
           </p>
           <p class="text-xs text-gray-500 dark:text-gray-400">
-            Tecnologias: Android, C, C#, VB, Delphi, HTML/JavaScript, Java, Kotlin, SQLite, SQL Server, DB2, Postgres, MySQL, Oracle
+            Tecnologias: Android, C, C#, VB, Delphi, HTML/JS, Java, Kotlin, SQLite, SQL Server, DB2, Postgres, MySQL, Oracle
           </p>
         </div>
-
       </div>
     </div>
   </section>
@@ -135,8 +117,8 @@
   <!-- Contato Section -->
   <section id="contato" class="py-16 px-6 bg-blue-50 dark:bg-blue-900 text-center transition-colors duration-500">
     <div class="max-w-xl mx-auto">
-      <h3 class="text-2xl font-semibold mb-4" data-lang="contact_title">Contato</h3>
-      <p class="mb-6 text-gray-700 dark:text-gray-300" data-lang="contact_subtitle">
+      <h3 class="text-2xl font-semibold mb-4 fade-text" data-lang="contact_title">Contato</h3>
+      <p class="mb-6 text-gray-700 dark:text-gray-300 fade-text" data-lang="contact_subtitle">
         Entre em contato comigo através das opções abaixo.
       </p>
       <div class="space-y-2">
@@ -166,13 +148,17 @@
       elementsToTranslate.forEach(element => {
         const key = element.getAttribute("data-lang");
         if (translations[lang] && translations[lang][key]) {
-          element.textContent = translations[lang][key];
+          element.classList.add("fade-out");
+          setTimeout(() => {
+            element.textContent = translations[lang][key];
+            element.classList.remove("fade-out");
+          }, 300);
         }
       });
     }
 
     function loadTranslationsAndRepos(selectedLang = null) {
-      const userLang = selectedLang || (navigator.language || navigator.userLanguage).toLowerCase();
+      const userLang = (selectedLang || navigator.language || navigator.userLanguage).toLowerCase();
       fetch('traducoes.json')
         .then(res => res.json())
         .then(translations => {
@@ -180,7 +166,6 @@
 
           translatePage(translations, chosenLang);
 
-          // Carregar projetos do GitHub
           fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
             .then(res => res.json())
             .then(repos => {
@@ -209,7 +194,7 @@
             });
         })
         .catch(err => {
-          console.error("Erro ao carregar o arquivo de tradução:", err);
+          console.error("Erro ao carregar traduções:", err);
         });
     }
 
@@ -222,7 +207,7 @@
       });
     });
 
-    // Carregar ao iniciar detectando idioma do usuário
+    // Inicializa detectando idioma do usuário
     loadTranslationsAndRepos();
   </script>
 
