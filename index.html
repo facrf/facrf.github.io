@@ -5,17 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fabiano Cesar | Desenvolvedor</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
   <script>
     tailwind.config = {
-      darkMode: 'media', // Detecta preferência do sistema
+      darkMode: 'media',
       theme: { extend: {} },
     };
   </script>
 
-  <!-- Estilo para fade ao trocar idioma -->
+  <!-- Estilos adicionais -->
   <style>
-    .fade-text { transition: opacity 0.3s ease; opacity: 1; }
+    /* Fade e animação de cards */
+    .fade-text, .fade-card { transition: opacity 0.3s ease, transform 0.3s ease; opacity: 1; transform: translateY(0); }
     .fade-out { opacity: 0; }
+    .card-hidden { opacity: 0; transform: translateY(20px); }
+
+    /* Hover moderno nos cards */
+    .hover-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+    .hover-card:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+      background-color: rgba(59,130,246,0.1); /* Tailwind blue-500 leve */
+    }
+    .dark .hover-card:hover {
+      background-color: rgba(59,130,246,0.2);
+    }
   </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-500">
@@ -80,28 +96,28 @@
     <div class="max-w-6xl mx-auto text-center">
       <h3 class="text-2xl font-semibold mb-10 fade-text" data-lang="legacy_title">Projetos Legados</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition card-hidden hover-card">
           <h4 class="font-bold mb-2">Software de Colônia de Pescadores (2004)</h4>
           <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
             Sistema para administração de associados e integração com o MAPA.
           </p>
           <p class="text-xs text-gray-500 dark:text-gray-400">Tecnologias: Delphi, Firebird, Rational Rose</p>
         </div>
-        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition card-hidden hover-card">
           <h4 class="font-bold mb-2">App para Sindicatos e Colônias (2017)</h4>
           <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
             Gerencia associados, anuidades, documentação junto ao MAPA e alertas automáticos.
           </p>
           <p class="text-xs text-gray-500 dark:text-gray-400">Tecnologias: Java, Kotlin, SQLite, Rational Rose e Scrum</p>
         </div>
-        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition card-hidden hover-card">
           <h4 class="font-bold mb-2">Amigo do Pescador (2020)</h4>
           <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
             App informativo sobre marés, fases da lua e períodos de defeso no Brasil.
           </p>
           <p class="text-xs text-gray-500 dark:text-gray-400">Tecnologias: Android, Java, Kotlin, SQLite</p>
         </div>
-        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition card-hidden hover-card">
           <h4 class="font-bold mb-2">Outros projetos para terceiros (1997-2025)</h4>
           <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
             Aplicativos e sites de corretores de seguro saúde, sistemas universitários, manutenção de apps comerciais.
@@ -144,17 +160,50 @@
     const elementsToTranslate = document.querySelectorAll("[data-lang]");
     const langBtns = document.querySelectorAll(".lang-btn");
 
+    function fadeText(element, text) {
+      element.classList.add("fade-out");
+      setTimeout(() => {
+        element.textContent = text;
+        element.classList.remove("fade-out");
+      }, 300);
+    }
+
     function translatePage(translations, lang) {
       elementsToTranslate.forEach(element => {
         const key = element.getAttribute("data-lang");
         if (translations[lang] && translations[lang][key]) {
-          element.classList.add("fade-out");
-          setTimeout(() => {
-            element.textContent = translations[lang][key];
-            element.classList.remove("fade-out");
-          }, 300);
+          fadeText(element, translations[lang][key]);
         }
       });
+    }
+
+    function loadRepos(translations, chosenLang) {
+      reposContainer.innerHTML = '';
+      fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
+        .then(res => res.json())
+        .then(repos => {
+          repos.forEach((repo, index) => {
+            if (repo.fork) return;
+            const repoDescription = repo.description || translations[chosenLang]?.github_no_description || translations['pt-br'].github_no_description;
+            const repoLanguage = translations[chosenLang]?.github_language || translations['pt-br'].github_language;
+            const viewOnGitHubText = translations[chosenLang]?.github_view || translations['pt-br'].github_view;
+
+            const card = document.createElement("div");
+            card.className = "bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition fade-card card-hidden hover-card";
+            card.innerHTML = `
+              <h4 class="font-bold mb-2">${repo.name}</h4>
+              <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">${repoDescription}</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">${repoLanguage}: ${repo.language || "N/A"}</p>
+              <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 text-sm hover:underline">${viewOnGitHubText}</a>
+            `;
+            reposContainer.appendChild(card);
+            setTimeout(() => card.classList.remove("card-hidden"), index * 100);
+          });
+        })
+        .catch(err => {
+          reposContainer.innerHTML = "<p>Erro ao carregar projetos do GitHub.</p>";
+          console.error(err);
+        });
     }
 
     function loadTranslationsAndRepos(selectedLang = null) {
@@ -163,42 +212,12 @@
         .then(res => res.json())
         .then(translations => {
           const chosenLang = translations[userLang] ? userLang : (translations[userLang.split('-')[0]] ? userLang.split('-')[0] : 'pt-br');
-
           translatePage(translations, chosenLang);
-
-          fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
-            .then(res => res.json())
-            .then(repos => {
-              reposContainer.innerHTML = '';
-              repos.forEach(repo => {
-                if (repo.fork) return;
-                const repoDescription = repo.description || translations[chosenLang]?.github_no_description || translations['pt-br'].github_no_description;
-                const repoLanguage = translations[chosenLang]?.github_language || translations['pt-br'].github_language;
-                const viewOnGitHubText = translations[chosenLang]?.github_view || translations['pt-br'].github_view;
-
-                const card = document.createElement("div");
-                card.className = "bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition";
-
-                card.innerHTML = `
-                  <h4 class="font-bold mb-2">${repo.name}</h4>
-                  <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">${repoDescription}</p>
-                  <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">${repoLanguage}: ${repo.language || "N/A"}</p>
-                  <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 text-sm hover:underline">${viewOnGitHubText}</a>
-                `;
-                reposContainer.appendChild(card);
-              });
-            })
-            .catch(err => {
-              reposContainer.innerHTML = "<p>Erro ao carregar projetos do GitHub.</p>";
-              console.error(err);
-            });
+          loadRepos(translations, chosenLang);
         })
-        .catch(err => {
-          console.error("Erro ao carregar traduções:", err);
-        });
+        .catch(err => console.error("Erro ao carregar traduções:", err));
     }
 
-    // Botões de idioma
     langBtns.forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -207,8 +226,7 @@
       });
     });
 
-    // Inicializa detectando idioma do usuário
-    loadTranslationsAndRepos();
+    loadTranslationsAndRepos(); // Detecta idioma do usuário na primeira carga
   </script>
 
 </body>
