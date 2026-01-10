@@ -1,173 +1,230 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fabiano Cesar | Desenvolvedor</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-50 text-gray-800 font-sans">
-    <header class="bg-white shadow-md">
-      <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold">Fabiano Cesar</h1>
-        <div class="flex items-center space-x-4">
-          <nav class="space-x-4">
-            <a href="#sobre" class="hover:text-blue-600" data-lang="header_about"></a>
-            <a href="#projetos" class="hover:text-blue-600" data-lang="header_projects"></a>
-            <a href="#contato" class="hover:text-blue-600" data-lang="header_contact"></a>
-          </nav>
-          <div class="language-switcher space-x-2 text-xl">
-            <a href="#" class="lang-btn" data-lang-code="pt-br">🇧🇷</a>
-            <a href="#" class="lang-btn" data-lang-code="en">🇺🇸</a>
-            <a href="#" class="lang-btn" data-lang-code="es">🇪🇸</a>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <section class="text-center py-20 px-6 bg-blue-100">
-      <h2 class="text-4xl font-bold mb-4" data-lang="hero_title"></h2>
-      <p class="text-lg max-w-xl mx-auto mb-6" data-lang="hero_subtitle"></p>
-      <a href="#contato" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 transition" data-lang="hero_cta"></a>
-    </section>
-
-    <section id="sobre" class="py-16 px-6 max-w-3xl mx-auto text-center">
-      <h3 class="text-2xl font-semibold mb-4" data-lang="about_title"></h3>
-      <p class="text-gray-700" data-lang="about_p1"></p>
-      <p class="mt-4 text-gray-700" data-lang="about_p2"></p>
-    </section>
-
-    <section id="projetos" class="bg-white py-16 px-6">
-      <div class="max-w-6xl mx-auto text-center">
-        <h3 class="text-2xl font-semibold mb-10" data-lang="projects_title"></h3>
-        <div id="repos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-          </div>
-      </div>
-    </section>
-
-    <section id="projeto_legado" class="bg-white py-16 px-6">
-      <div class="max-w-6xl mx-auto text-center">
-        <h3 class="text-2xl font-semibold mb-10" data-lang="legacy_title"></h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-          <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h4 class="font-bold mb-2">Software de Colônia de Pescadores (2004)</h4>
-            <p class="text-gray-700 text-sm mb-2">
-              Sistema para administração de associados e integração com o MAPA (Ministério da Agricultura e Pecuária).
-            </p>
-            <p class="text-xs text-gray-500">Tecnologias: Delphi, Firebird, Rational Rose</p>
-          </div>
-
-          <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h4 class="font-bold mb-2">App para Sindicatos e Colônias(2017)</h4>
-            <p class="text-gray-700 text-sm mb-2">
-              Gerencia associados, anuidades, documentação junto ao MAPA e alertas automáticos.
-            </p>
-            <p class="text-xs text-gray-500">Tecnologias: Java, Kotlin, SQLite, Rational Rose e Scrum</p>
-          </div>
-
-          <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h4 class="font-bold mb-2">Amigo do Pescador(2020)</h4>
-            <p class="text-gray-700 text-sm mb-2">
-              App informativo sobre marés, fases da lua e períodos de defeso no Brasil.
-            </p>
-            <p class="text-xs text-gray-500">Tecnologias: Android, Java, Kotlin, SQLite</p>
-          </div>
-          <div class="bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h4 class="font-bold mb-2">Outros projetos para terceiros (1997-2025)</h4>
-            <p class="text-gray-700 text-sm mb-2">
-              Aplicativos e sites de corretores de seguro saude(DIX 1999), para Universitários(CITEC São Camilo ES 2004-2005) até manutenção em aplicativos comerciais em Delphi e C# com integração SINTEGRA(MG 2006) até software de academia com biometria e ID facial(2012).
-            </p>
-            <p class="text-xs text-gray-500">Tecnologias: Android, C, C#, VB, Delphi, Html/javascript, Java, Kotlin, SQLite, SLQ server, DB2, Postgres ,mysql, Oracle</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contato" class="py-16 px-6 bg-blue-50 text-center">
-      <div class="max-w-xl mx-auto">
-        <h3 class="text-2xl font-semibold mb-4" data-lang="contact_title"></h3>
-        <p class="mb-6 text-gray-700" data-lang="contact_subtitle"></p>
-        <div class="space-y-2">
-          <!-- Alterar para formulario  <p><strong data-lang="contact_email"></strong> <a href="mailto:vdsd@fws.com" class="text-blue-600 hover:underline">xptoo@aaa.com</a></p>  -->
-          <p><strong data-lang="contact_github"></strong> <a href="https://github.com/facrf" target="_blank" class="text-blue-600 hover:underline">github.com/facrf</a></p>
-        </div>
-      </div>
-    </section>
-
-    <footer class="text-center py-6 text-sm text-gray-500 bg-white" data-lang="footer"></footer>
-
-    <script>
-      const username = "facrf";
-      const reposContainer = document.getElementById("repos-container");
-      const elementsToTranslate = document.querySelectorAll("[data-lang]");
-      const langBtns = document.querySelectorAll(".lang-btn");
-
-      function translatePage(translations, lang) {
-        elementsToTranslate.forEach(element => {
-          const key = element.getAttribute("data-lang");
-          if (translations[lang] && translations[lang][key]) {
-            element.textContent = translations[lang][key];
-          }
-        });
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fabiano Cesar | Desenvolvedor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Configuração do Tailwind para dark mode baseado no sistema
+    tailwind.config = {
+      darkMode: 'media', // detecta o preferido do sistema
+      theme: {
+        extend: {},
       }
+    };
+  </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-500">
 
-      function loadTranslationsAndRepos(selectedLang = null) {
-        const userLang = selectedLang || navigator.language || navigator.userLanguage;
-        let lang = userLang.split('-')[0];
+  <!-- Header -->
+  <header class="bg-white dark:bg-gray-800 shadow-md">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">Fabiano Cesar</h1>
+      
+      <div class="flex items-center space-x-4">
+        <!-- Menu de navegação -->
+        <nav class="space-x-4">
+          <a href="#sobre" class="hover:text-blue-600 dark:hover:text-blue-400" data-lang="header_about">Sobre</a>
+          <a href="#projetos" class="hover:text-blue-600 dark:hover:text-blue-400" data-lang="header_projects">Projetos</a>
+          <a href="#contato" class="hover:text-blue-600 dark:hover:text-blue-400" data-lang="header_contact">Contato</a>
+        </nav>
 
-        fetch('traducoes.json')
-          .then(res => res.json())
-          .then(translations => {
-            const chosenLang = translations[userLang.toLowerCase()] ? userLang.toLowerCase() : lang;
-            const fallbackLang = 'pt-br';
+        <!-- Language switcher -->
+        <div class="language-switcher flex space-x-2 text-xl">
+          <button class="lang-btn" data-lang-code="pt-br" aria-label="Português">
+            <img src="/flags/br.svg" alt="Português (Brasil)" width="16" height="16">
+          </button>
+          <button class="lang-btn" data-lang-code="en" aria-label="English">
+            <img src="/flags/us.svg" alt="English (US)" width="16" height="16">
+          </button>
+          <button class="lang-btn" data-lang-code="es" aria-label="Español">
+            <img src="/flags/es.svg" alt="Español" width="16" height="16">
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
 
-            translatePage(translations, chosenLang in translations ? chosenLang : fallbackLang);
+  <!-- Hero Section -->
+  <section class="text-center py-20 px-6 bg-blue-100 dark:bg-blue-900 transition-colors duration-500">
+    <h2 class="text-4xl font-bold mb-4" data-lang="hero_title">
+      Olá, eu sou Fabiano Cesar
+    </h2>
+    <p class="text-lg max-w-xl mx-auto mb-6" data-lang="hero_subtitle">
+      Desenvolvedor full-stack focado em soluções modernas e eficientes.
+    </p>
+    <a href="#contato" 
+       class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 transition" 
+       data-lang="hero_cta">
+      Fale comigo
+    </a>
+  </section>
 
-            // Carregar projetos do GitHub
-            fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
-              .then(res => res.json())
-              .then(repos => {
-                reposContainer.innerHTML = ''; // Limpa os projetos existentes
-                repos.forEach(repo => {
-                  if (repo.fork) return;
-                  const card = document.createElement("div");
-                  card.className = "bg-gray-100 p-6 rounded-xl shadow hover:shadow-lg transition";
+  <!-- Sobre Section -->
+  <section id="sobre" class="py-16 px-6 max-w-3xl mx-auto text-center">
+    <h3 class="text-2xl font-semibold mb-4" data-lang="about_title">
+      Sobre mim
+    </h3>
+    <p class="text-gray-700 dark:text-gray-300" data-lang="about_p1">
+      Sou desenvolvedor apaixonado por criar soluções que unem eficiência e experiência do usuário.
+    </p>
+    <p class="mt-4 text-gray-700 dark:text-gray-300" data-lang="about_p2">
+      Tenho experiência com aplicações web e mobile, sempre buscando novas tecnologias e boas práticas.
+    </p>
+  </section>
 
-                  const repoDescription = repo.description || translations[chosenLang]?.github_no_description || translations[fallbackLang].github_no_description;
-                  const repoLanguage = translations[chosenLang]?.github_language || translations[fallbackLang].github_language;
-                  const viewOnGitHubText = translations[chosenLang]?.github_view || translations[fallbackLang].github_view;
+  <!-- Projetos Section -->
+  <section id="projetos" class="bg-white dark:bg-gray-800 py-16 px-6 transition-colors duration-500">
+    <div class="max-w-6xl mx-auto text-center">
+      <h3 class="text-2xl font-semibold mb-10" data-lang="projects_title">
+        Projetos Recentes
+      </h3>
+      <div id="repos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+        <!-- Cards GitHub via JS -->
+      </div>
+    </div>
+  </section>
 
-                  card.innerHTML = `
-                    <h4 class="font-bold mb-2">${repo.name}</h4>
-                    <p class="text-gray-700 text-sm mb-2">${repoDescription}</p>
-                    <p class="text-xs text-gray-500 mb-2">${repoLanguage}: ${repo.language || "N/A"}</p>
-                    <a href="${repo.html_url}" target="_blank" class="text-blue-600 text-sm hover:underline">${viewOnGitHubText}</a>
-                  `;
-                  reposContainer.appendChild(card);
-                });
-              })
-              .catch(err => {
-                reposContainer.innerHTML = "<p>Erro ao carregar projetos do GitHub.</p>";
-                console.error(err);
-              });
-          })
-          .catch(err => {
-            console.error("Erro ao carregar o arquivo de tradução:", err);
-          });
-      }
+  <!-- Projetos Legado -->
+  <section id="projeto_legado" class="bg-white dark:bg-gray-800 py-16 px-6 transition-colors duration-500">
+    <div class="max-w-6xl mx-auto text-center">
+      <h3 class="text-2xl font-semibold mb-10" data-lang="legacy_title">
+        Projetos Legados
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
 
-      // Adiciona o event listener para os botões de idioma
-      langBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          const langCode = e.target.getAttribute('data-lang-code');
-          loadTranslationsAndRepos(langCode);
-        });
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <h4 class="font-bold mb-2">Software de Colônia de Pescadores (2004)</h4>
+          <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
+            Sistema para administração de associados e integração com o MAPA (Ministério da Agricultura e Pecuária).
+          </p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Tecnologias: Delphi, Firebird, Rational Rose</p>
+        </div>
+
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <h4 class="font-bold mb-2">App para Sindicatos e Colônias (2017)</h4>
+          <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
+            Gerencia associados, anuidades, documentação junto ao MAPA e alertas automáticos.
+          </p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Tecnologias: Java, Kotlin, SQLite, Rational Rose e Scrum</p>
+        </div>
+
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <h4 class="font-bold mb-2">Amigo do Pescador (2020)</h4>
+          <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
+            App informativo sobre marés, fases da lua e períodos de defeso no Brasil.
+          </p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">Tecnologias: Android, Java, Kotlin, SQLite</p>
+        </div>
+
+        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition">
+          <h4 class="font-bold mb-2">Outros projetos para terceiros (1997-2025)</h4>
+          <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
+            Aplicativos e sites de corretores de seguro saúde, sistemas para universitários, até manutenção de apps comerciais com Delphi e C#.
+          </p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            Tecnologias: Android, C, C#, VB, Delphi, HTML/JavaScript, Java, Kotlin, SQLite, SQL Server, DB2, Postgres, MySQL, Oracle
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato Section -->
+  <section id="contato" class="py-16 px-6 bg-blue-50 dark:bg-blue-900 text-center transition-colors duration-500">
+    <div class="max-w-xl mx-auto">
+      <h3 class="text-2xl font-semibold mb-4" data-lang="contact_title">Contato</h3>
+      <p class="mb-6 text-gray-700 dark:text-gray-300" data-lang="contact_subtitle">
+        Entre em contato comigo através das opções abaixo.
+      </p>
+      <div class="space-y-2">
+        <p>
+          <strong data-lang="contact_github">GitHub:</strong> 
+          <a href="https://github.com/facrf" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">
+            github.com/facrf
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 transition-colors duration-500" data-lang="footer">
+    © 2026 Fabiano Cesar. Todos os direitos reservados.
+  </footer>
+
+  <!-- Script JS -->
+  <script>
+    const username = "facrf";
+    const reposContainer = document.getElementById("repos-container");
+    const elementsToTranslate = document.querySelectorAll("[data-lang]");
+    const langBtns = document.querySelectorAll(".lang-btn");
+
+    function translatePage(translations, lang) {
+      elementsToTranslate.forEach(element => {
+        const key = element.getAttribute("data-lang");
+        if (translations[lang] && translations[lang][key]) {
+          element.textContent = translations[lang][key];
+        }
       });
+    }
 
-      // Chama a função ao carregar a página pela primeira vez
-      loadTranslationsAndRepos();
-    </script>
-  </body>
+    function loadTranslationsAndRepos(selectedLang = null) {
+      const userLang = selectedLang || (navigator.language || navigator.userLanguage).toLowerCase();
+      fetch('traducoes.json')
+        .then(res => res.json())
+        .then(translations => {
+          const chosenLang = translations[userLang] ? userLang : (translations[userLang.split('-')[0]] ? userLang.split('-')[0] : 'pt-br');
+
+          translatePage(translations, chosenLang);
+
+          // Carregar projetos do GitHub
+          fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
+            .then(res => res.json())
+            .then(repos => {
+              reposContainer.innerHTML = '';
+              repos.forEach(repo => {
+                if (repo.fork) return;
+                const repoDescription = repo.description || translations[chosenLang]?.github_no_description || translations['pt-br'].github_no_description;
+                const repoLanguage = translations[chosenLang]?.github_language || translations['pt-br'].github_language;
+                const viewOnGitHubText = translations[chosenLang]?.github_view || translations['pt-br'].github_view;
+
+                const card = document.createElement("div");
+                card.className = "bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition";
+
+                card.innerHTML = `
+                  <h4 class="font-bold mb-2">${repo.name}</h4>
+                  <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">${repoDescription}</p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">${repoLanguage}: ${repo.language || "N/A"}</p>
+                  <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 text-sm hover:underline">${viewOnGitHubText}</a>
+                `;
+                reposContainer.appendChild(card);
+              });
+            })
+            .catch(err => {
+              reposContainer.innerHTML = "<p>Erro ao carregar projetos do GitHub.</p>";
+              console.error(err);
+            });
+        })
+        .catch(err => {
+          console.error("Erro ao carregar o arquivo de tradução:", err);
+        });
+    }
+
+    // Botões de idioma
+    langBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const langCode = btn.getAttribute('data-lang-code');
+        loadTranslationsAndRepos(langCode);
+      });
+    });
+
+    // Carregar ao iniciar detectando idioma do usuário
+    loadTranslationsAndRepos();
+  </script>
+
+</body>
 </html>
-
