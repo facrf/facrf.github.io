@@ -1,0 +1,67 @@
+# Bloqueio global
+User-agent: *
+Disallow: /
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+# Anthropic / Claude
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+# Common Crawl (base de treino de LLMs)
+User-agent: CCBot
+Disallow: /
+
+# Google (treinamento de IA e busca)
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Googlebot
+Disallow: /
+
+User-agent: Googlebot-Image
+Disallow: /
+
+User-agent: Googlebot-News
+Disallow: /
+
+# Microsoft / Bing
+User-agent: Bingbot
+Disallow: /
+
+User-agent: MicrosoftPreview
+Disallow: /
+
+# Outros buscadores grandes
+User-agent: DuckDuckBot
+Disallow: /
+
+User-agent: Yandex
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+# Arquivos comuns usados para scraping
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.csv$
+Disallow: /*.txt$
+
+# Pastas sensíveis (mesmo que não existam)
+Disallow: /api/
+Disallow: /data/
+Disallow: /private/
+Disallow: /backup/
+Disallow: /tmp/
