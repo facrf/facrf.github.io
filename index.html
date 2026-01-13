@@ -2,240 +2,238 @@
 <html lang="pt-br">
 <head>
   <!--
-Proibida a coleta automatizada, scraping ou uso para
-treinamento de modelos de IA sem autorização expressa.
--->
-  <!-- Bloqueio de indexação -->
+  Proibida a coleta automatizada, scraping ou uso para
+  treinamento de modelos de IA sem autorização expressa.
+  -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Fabiano Cesar | Desenvolvedor Full Stack</title>
+
+  <meta name="description" content="Fabiano Cesar, desenvolvedor full stack com experiência desde 1997 em projetos web e mobile.">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fabiano Cesar | Desenvolvedor</title>
-  <script src="https://cdn.tailwindcss.com"></script>
 
-  <script>
-    tailwind.config = {
-      darkMode: 'media',
-      theme: { extend: {} },
-    };
-  </script>
+  <!-- CSP enxuta (sem CDN) -->
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                 script-src 'self' 'unsafe-inline';
+                 style-src 'self' 'unsafe-inline';
+                 img-src 'self' data:;
+                 connect-src https://api.github.com;">
 
-  <!-- Estilos adicionais -->
   <style>
-    /* Fade e animação de cards */
-    .fade-text, .fade-card { transition: opacity 0.3s ease, transform 0.3s ease; opacity: 1; transform: translateY(0); }
-    .fade-out { opacity: 0; }
-    .card-hidden { opacity: 0; transform: translateY(20px); }
+    :root {
+      --bg: #f9fafb;
+      --bg-dark: #111827;
+      --text: #1f2937;
+      --text-dark: #e5e7eb;
+      --primary: #2563eb;
+    }
 
-    /* Hover moderno nos cards */
-    .hover-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111827;
+        --text: #e5e7eb;
+      }
     }
-    .hover-card:hover {
-      transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 15px 25px rgba(0,0,0,0.2);
-      background-color: rgba(59,130,246,0.1); /* Tailwind blue-500 leve */
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background .4s, color .4s;
     }
-    .dark .hover-card:hover {
-      background-color: rgba(59,130,246,0.2);
+
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header, section, footer {
+      padding: 4rem 1.5rem;
+    }
+
+    header {
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+
+    header .wrap {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      margin-left: 1.5rem;
+      font-weight: 500;
+    }
+
+    .hero {
+      background: #dbeafe;
+      text-align: center;
+    }
+
+    h1, h2, h3 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    h1 { font-size: 1.3rem; }
+    h2 { font-size: 2.2rem; }
+    h3 { font-size: 1.6rem; }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: .8rem 1.8rem;
+      background: var(--primary);
+      color: white;
+      border-radius: 999px;
+      transition: background .3s, transform .3s;
+    }
+
+    .btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    #repos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    article {
+      background: rgba(255,255,255,.8);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,.08);
+      transition: transform .3s, box-shadow .3s;
+    }
+
+    article:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px rgba(0,0,0,.15);
+    }
+
+    footer {
+      font-size: .9rem;
+      text-align: center;
+      color: #6b7280;
+      background: white;
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn .6s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-500">
 
-  <!-- Header -->
-  <header class="bg-white dark:bg-gray-800 shadow-md">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold">Fabiano Cesar</h1>
-      <div class="flex items-center space-x-4">
-        <nav class="space-x-4">
-          <a href="#sobre" class="hover:text-blue-600 dark:hover:text-blue-400 fade-text" data-lang="header_about">Sobre</a>
-          <a href="#projetos" class="hover:text-blue-600 dark:hover:text-blue-400 fade-text" data-lang="header_projects">Projetos</a>
-          <a href="#contato" class="hover:text-blue-600 dark:hover:text-blue-400 fade-text" data-lang="header_contact">Contato</a>
-        </nav>
-        <div class="language-switcher flex space-x-2 text-xl">
-          <button class="lang-btn" data-lang-code="pt-br" aria-label="Português">
-            <img src="/flags/br.svg" alt="Português (Brasil)" width="16" height="16">
-          </button>
-          <button class="lang-btn" data-lang-code="en" aria-label="English">
-            <img src="/flags/us.svg" alt="English (US)" width="16" height="16">
-          </button>
-          <button class="lang-btn" data-lang-code="es" aria-label="Español">
-            <img src="/flags/es.svg" alt="Español" width="16" height="16">
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
+<body>
 
-  <!-- Hero Section -->
-  <section class="text-center py-20 px-6 bg-blue-100 dark:bg-blue-900 transition-colors duration-500">
-    <h2 class="text-4xl font-bold mb-4 fade-text" data-lang="hero_title">Olá, eu sou Fabiano Cesar</h2>
-    <p class="text-lg max-w-xl mx-auto mb-6 fade-text" data-lang="hero_subtitle">
-      Desenvolvedor full-stack focado em soluções modernas e eficientes.
+<header>
+  <div class="wrap">
+    <h1>Fabiano Cesar</h1>
+    <nav>
+      <a href="#sobre">Sobre</a>
+      <a href="#projetos">Projetos</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" role="banner">
+  <div class="container fade">
+    <h2>Olá, eu sou Fabiano Cesar</h2>
+    <p>Desenvolvedor full stack focado em soluções simples, eficientes e sustentáveis.</p>
+    <a href="#contato" class="btn">Fale comigo</a>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="container fade">
+    <h3>Sobre mim</h3>
+    <p>Desenvolvedor full stack com experiência desde 1997, atuando em projetos web e mobile.</p>
+    <p>Foco em qualidade, manutenção e soluções duráveis.</p>
+  </div>
+</section>
+
+<section id="projetos">
+  <div class="container fade">
+    <h3>Projetos recentes</h3>
+    <div id="repos"></div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="container fade">
+    <h3>Contato</h3>
+    <p>
+      GitHub:
+      <a href="https://github.com/facrf" target="_blank" rel="noopener noreferrer">
+        github.com/facrf
+      </a>
     </p>
-    <a href="#contato" class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-600 transition fade-text" data-lang="hero_cta">
-      Fale comigo
-    </a>
-  </section>
+  </div>
+</section>
 
-  <!-- Sobre Section -->
-  <section id="sobre" class="py-16 px-6 max-w-3xl mx-auto text-center">
-    <h3 class="text-2xl font-semibold mb-4 fade-text" data-lang="about_title">Sobre mim</h3>
-    <p class="text-gray-700 dark:text-gray-300 fade-text" data-lang="about_p1">
-      Sou desenvolvedor apaixonado por criar soluções que unem eficiência e experiência do usuário.
-    </p>
-    <p class="mt-4 text-gray-700 dark:text-gray-300 fade-text" data-lang="about_p2">
-      Tenho experiência com aplicações web e mobile, sempre buscando novas tecnologias e boas práticas.
-    </p>
-  </section>
+<footer>
+  © 1997–2026 Fabiano Cesar. Todos os direitos reservados.
+</footer>
 
-  <!-- Projetos Section -->
-  <section id="projetos" class="bg-white dark:bg-gray-800 py-16 px-6 transition-colors duration-500">
-    <div class="max-w-6xl mx-auto text-center">
-      <h3 class="text-2xl font-semibold mb-10 fade-text" data-lang="projects_title">Projetos Recentes</h3>
-      <div id="repos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left"></div>
-    </div>
-  </section>
+<script>
+  const username = "facrf";
+  const container = document.getElementById("repos");
 
-  <!-- Projetos Legado -->
-  <section id="projeto_legado" class="bg-white dark:bg-gray-800 py-16 px-6 transition-colors duration-500">
-    <div class="max-w-6xl mx-auto text-center">
-      <h3 class="text-2xl font-semibold mb-10 fade-text" data-lang="legacy_title">Projetos Legados</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition card-hidden hover-card">
-          <h4 class="font-bold mb-2">Software de Colônia de Pescadores (2004)</h4>
-          <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
-            Sistema para administração de associados e integração com o MAPA.
-          </p>
-          <p class="text-xs text-gray-500 dark:text-gray-400">Tecnologias: Delphi, Firebird, Rational Rose</p>
-        </div>
-        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition card-hidden hover-card">
-          <h4 class="font-bold mb-2">App para Sindicatos e Colônias (2017)</h4>
-          <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
-            Gerencia associados, anuidades, documentação junto ao MAPA e alertas automáticos.
-          </p>
-          <p class="text-xs text-gray-500 dark:text-gray-400">Tecnologias: Java, Kotlin, SQLite, Rational Rose e Scrum</p>
-        </div>
-        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition card-hidden hover-card">
-          <h4 class="font-bold mb-2">Amigo do Pescador (2020)</h4>
-          <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
-            App informativo sobre marés, fases da lua e períodos de defeso no Brasil.
-          </p>
-          <p class="text-xs text-gray-500 dark:text-gray-400">Tecnologias: Android, Java, Kotlin, SQLite</p>
-        </div>
-        <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition card-hidden hover-card">
-          <h4 class="font-bold mb-2">Outros projetos para terceiros (1997-2025)</h4>
-          <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">
-            Aplicativos e sites de corretores de seguro saúde, sistemas universitários, manutenção de apps comerciais.
-          </p>
-          <p class="text-xs text-gray-500 dark:text-gray-400">
-            Tecnologias: Android, C, C#, VB, Delphi, HTML/JS, Java, Kotlin, SQLite, SQL Server, DB2, Postgres, MySQL, Oracle
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
+  if (/bot|crawl|spider|slurp/i.test(navigator.userAgent)) {
+    document.body.innerHTML = "";
+  }
 
-  <!-- Contato Section -->
-  <section id="contato" class="py-16 px-6 bg-blue-50 dark:bg-blue-900 text-center transition-colors duration-500">
-    <div class="max-w-xl mx-auto">
-      <h3 class="text-2xl font-semibold mb-4 fade-text" data-lang="contact_title">Contato</h3>
-      <p class="mb-6 text-gray-700 dark:text-gray-300 fade-text" data-lang="contact_subtitle">
-        Entre em contato comigo através das opções abaixo.
-      </p>
-      <div class="space-y-2">
-        <p>
-          <strong data-lang="contact_github">GitHub:</strong> 
-          <a href="https://github.com/facrf" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline">
-            github.com/facrf
-          </a>
-        </p>
-      </div>
-    </div>
-  </section>
+  const cacheKey = "repos_" + username;
+  const cached = sessionStorage.getItem(cacheKey);
 
-  <!-- Footer -->
-  <footer class="text-center py-6 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 transition-colors duration-500" data-lang="footer">
-    © 2026 Fabiano Cesar. Todos os direitos reservados.
-  </footer>
-
-  <!-- Script JS -->
-  <script>
-    const username = "facrf";
-    const reposContainer = document.getElementById("repos-container");
-    const elementsToTranslate = document.querySelectorAll("[data-lang]");
-    const langBtns = document.querySelectorAll(".lang-btn");
-
-    function fadeText(element, text) {
-      element.classList.add("fade-out");
-      setTimeout(() => {
-        element.textContent = text;
-        element.classList.remove("fade-out");
-      }, 300);
-    }
-
-    function translatePage(translations, lang) {
-      elementsToTranslate.forEach(element => {
-        const key = element.getAttribute("data-lang");
-        if (translations[lang] && translations[lang][key]) {
-          fadeText(element, translations[lang][key]);
-        }
+  if (cached) {
+    render(JSON.parse(cached));
+  } else {
+    fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
+      .then(r => r.json())
+      .then(data => {
+        sessionStorage.setItem(cacheKey, JSON.stringify(data));
+        render(data);
       });
-    }
+  }
 
-    function loadRepos(translations, chosenLang) {
-      reposContainer.innerHTML = '';
-      fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
-        .then(res => res.json())
-        .then(repos => {
-          repos.forEach((repo, index) => {
-            if (repo.fork) return;
-            const repoDescription = repo.description || translations[chosenLang]?.github_no_description || translations['pt-br'].github_no_description;
-            const repoLanguage = translations[chosenLang]?.github_language || translations['pt-br'].github_language;
-            const viewOnGitHubText = translations[chosenLang]?.github_view || translations['pt-br'].github_view;
-
-            const card = document.createElement("div");
-            card.className = "bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition fade-card card-hidden hover-card";
-            card.innerHTML = `
-              <h4 class="font-bold mb-2">${repo.name}</h4>
-              <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">${repoDescription}</p>
-              <p class="text-xs text-gray-500 dark:text-gray-400 mb-2">${repoLanguage}: ${repo.language || "N/A"}</p>
-              <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 text-sm hover:underline">${viewOnGitHubText}</a>
-            `;
-            reposContainer.appendChild(card);
-            setTimeout(() => card.classList.remove("card-hidden"), index * 100);
-          });
-        })
-        .catch(err => {
-          reposContainer.innerHTML = "<p>Erro ao carregar projetos do GitHub.</p>";
-          console.error(err);
-        });
-    }
-
-    function loadTranslationsAndRepos(selectedLang = null) {
-      const userLang = (selectedLang || navigator.language || navigator.userLanguage).toLowerCase();
-      fetch('traducoes.json')
-        .then(res => res.json())
-        .then(translations => {
-          const chosenLang = translations[userLang] ? userLang : (translations[userLang.split('-')[0]] ? userLang.split('-')[0] : 'pt-br');
-          translatePage(translations, chosenLang);
-          loadRepos(translations, chosenLang);
-        })
-        .catch(err => console.error("Erro ao carregar traduções:", err));
-    }
-
-    langBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const langCode = btn.getAttribute('data-lang-code');
-        loadTranslationsAndRepos(langCode);
-      });
+  function render(repos) {
+    repos.filter(r => !r.fork).forEach(repo => {
+      const card = document.createElement("article");
+      card.innerHTML = `
+        <h4>${repo.name}</h4>
+        <p>${repo.description || "Sem descrição."}</p>
+        <p><strong>Linguagem:</strong> ${repo.language || "N/A"}</p>
+        <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
+      `;
+      container.appendChild(card);
     });
+  }
+</script>
 
-    loadTranslationsAndRepos(); // Detecta idioma do usuário na primeira carga
-  </script>
-  
 </body>
 </html>
-
-
