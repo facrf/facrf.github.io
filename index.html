@@ -9,232 +9,132 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Fabiano Cesar | Desenvolvedor Full Stack</title>
+  <title>Fabiano Cesar | Desenvolvedor</title>
 
   <meta name="description" content="Fabiano Cesar, desenvolvedor full stack com experiência desde 1997 em projetos web e mobile.">
   <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 
-  <!-- CSP enxuta (sem CDN) -->
-  <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self';
-                 script-src 'self' 'unsafe-inline';
-                 style-src 'self' 'unsafe-inline';
-                 img-src 'self' data:;
-                 connect-src https://api.github.com;">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'media'
+    }
+  </script>
 
   <style>
-    :root {
-      --bg: #f9fafb;
-      --bg-dark: #111827;
-      --text: #1f2937;
-      --text-dark: #e5e7eb;
-      --primary: #2563eb;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #111827;
-        --text: #e5e7eb;
-      }
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      transition: background .4s, color .4s;
-    }
-
-    a { color: var(--primary); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    header, section, footer {
-      padding: 4rem 1.5rem;
-    }
-
-    header {
-      background: white;
-      box-shadow: 0 2px 8px rgba(0,0,0,.05);
-    }
-
-    header .wrap {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    nav a {
-      margin-left: 1.5rem;
-      font-weight: 500;
-    }
-
-    .hero {
-      background: #dbeafe;
-      text-align: center;
-    }
-
-    h1, h2, h3 {
-      font-weight: 700;
-      margin-bottom: 1rem;
-    }
-
-    h1 { font-size: 1.3rem; }
-    h2 { font-size: 2.2rem; }
-    h3 { font-size: 1.6rem; }
-
-    .btn {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: .8rem 1.8rem;
-      background: var(--primary);
-      color: white;
-      border-radius: 999px;
-      transition: background .3s, transform .3s;
-    }
-
-    .btn:hover {
-      background: #1d4ed8;
-      transform: translateY(-2px);
-    }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
-      text-align: center;
-    }
-
-    #repos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-
-    article {
-      background: rgba(255,255,255,.8);
-      padding: 1.5rem;
-      border-radius: 1rem;
-      box-shadow: 0 8px 20px rgba(0,0,0,.08);
-      transition: transform .3s, box-shadow .3s;
-    }
-
-    article:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 15px 30px rgba(0,0,0,.15);
-    }
-
-    footer {
-      font-size: .9rem;
-      text-align: center;
-      color: #6b7280;
-      background: white;
-    }
-
-    .fade {
+    .fade-card {
       opacity: 0;
       transform: translateY(20px);
-      animation: fadeIn .6s forwards;
+      transition: all .4s ease;
     }
-
-    @keyframes fadeIn {
-      to { opacity: 1; transform: translateY(0); }
+    .fade-card.show {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 
-<body>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
 
-<header>
-  <div class="wrap">
-    <h1>Fabiano Cesar</h1>
-    <nav>
-      <a href="#sobre">Sobre</a>
-      <a href="#projetos">Projetos</a>
-      <a href="#contato">Contato</a>
+<!-- Header -->
+<header class="bg-white dark:bg-gray-800 shadow-sm">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+    <h1 class="text-lg font-bold">Fabiano Cesar</h1>
+    <nav class="space-x-4">
+      <a href="#projetos" class="hover:text-blue-600">Projetos</a>
+      <a href="#contato" class="hover:text-blue-600">Contato</a>
     </nav>
   </div>
 </header>
 
-<section class="hero" role="banner">
-  <div class="container fade">
-    <h2>Olá, eu sou Fabiano Cesar</h2>
-    <p>Desenvolvedor full stack focado em soluções simples, eficientes e sustentáveis.</p>
-    <a href="#contato" class="btn">Fale comigo</a>
-  </div>
+<!-- Hero -->
+<section class="bg-blue-100 dark:bg-blue-900 py-20 text-center px-6">
+  <h2 class="text-4xl font-bold mb-4">
+    Olá, eu sou Fabiano Cesar
+  </h2>
+  <p class="max-w-xl mx-auto text-lg mb-6">
+    Desenvolvedor full stack focado em soluções simples, eficientes e duráveis.
+  </p>
+  <a href="#contato"
+     class="inline-block bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition">
+    Fale comigo
+  </a>
 </section>
 
-<section id="sobre">
-  <div class="container fade">
-    <h3>Sobre mim</h3>
-    <p>Desenvolvedor full stack com experiência desde 1997, atuando em projetos web e mobile.</p>
-    <p>Foco em qualidade, manutenção e soluções duráveis.</p>
-  </div>
-</section>
+<!-- Projetos Recentes -->
+<section id="projetos" class="bg-white dark:bg-gray-800 py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h3 class="text-2xl font-semibold mb-10 text-center">
+      Projetos Recentes
+    </h3>
 
-<section id="projetos">
-  <div class="container fade">
-    <h3>Projetos recentes</h3>
-    <div id="repos"></div>
+    <div id="repos-container"
+         class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- carregado via JS -->
+    </div>
   </div>
 </section>
 
 <!-- Projetos Legados -->
-<section id="projeto_legado" class="bg-white dark:bg-gray-800 py-16 px-6 transition-colors duration-500">
-  <div class="max-w-6xl mx-auto text-center">
-    <h3 class="text-2xl font-semibold mb-10 fade-text" data-lang="legacy_title">
+<section class="bg-gray-50 dark:bg-gray-900 py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h3 class="text-2xl font-semibold mb-10 text-center">
       Projetos Legados
     </h3>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 
-      <article class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition fade-card card-hidden hover-card">
-        <h4 class="font-bold mb-2">Software de Colônia de Pescadores</h4>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">2004</p>
-        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
+      <article class="fade-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5 hover:shadow-md transition">
+        <header class="mb-2">
+          <h4 class="font-semibold">Software de Colônia de Pescadores</h4>
+          <span class="text-xs text-gray-500">2004</span>
+        </header>
+        <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
           Sistema para administração de associados e integração com o MAPA.
         </p>
-        <p class="text-xs text-gray-500 dark:text-gray-400">
-          Delphi, Firebird, Rational Rose
+        <p class="text-xs text-gray-500">
+          Delphi · Firebird · Rational Rose
         </p>
       </article>
 
-      <article class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition fade-card card-hidden hover-card">
-        <h4 class="font-bold mb-2">App para Sindicatos e Colônias</h4>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">2017</p>
-        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
-          Gerenciamento de associados, anuidades, documentação junto ao MAPA e alertas automáticos.
+      <article class="fade-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5 hover:shadow-md transition">
+        <header class="mb-2">
+          <h4 class="font-semibold">App para Sindicatos e Colônias</h4>
+          <span class="text-xs text-gray-500">2017</span>
+        </header>
+        <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+          Gerenciamento de associados, anuidades, documentação e alertas automáticos.
         </p>
-        <p class="text-xs text-gray-500 dark:text-gray-400">
-          Java, Kotlin, SQLite, Rational Rose, Scrum
-        </p>
-      </article>
-
-      <article class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition fade-card card-hidden hover-card">
-        <h4 class="font-bold mb-2">Amigo do Pescador</h4>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">2020</p>
-        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
-          Aplicativo informativo sobre marés, fases da lua e períodos de defeso no Brasil.
-        </p>
-        <p class="text-xs text-gray-500 dark:text-gray-400">
-          Android, Java, Kotlin, SQLite
+        <p class="text-xs text-gray-500">
+          Java · Kotlin · SQLite · Scrum
         </p>
       </article>
 
-      <article class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition fade-card card-hidden hover-card">
-        <h4 class="font-bold mb-2">Projetos para terceiros</h4>
-        <p class="text-sm text-gray-600 dark:text-gray-400 mb-1">1997 – 2025</p>
-        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
-          Desenvolvimento e manutenção de aplicativos e sites para diversos segmentos,
-          incluindo seguros, universidades e sistemas comerciais.
+      <article class="fade-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5 hover:shadow-md transition">
+        <header class="mb-2">
+          <h4 class="font-semibold">Amigo do Pescador</h4>
+          <span class="text-xs text-gray-500">2020</span>
+        </header>
+        <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+          Aplicativo informativo sobre marés, fases da lua e períodos de defeso.
         </p>
-        <p class="text-xs text-gray-500 dark:text-gray-400">
-          Android, C, C#, VB, Delphi, HTML/JS, Java, Kotlin, SQLite,
-          SQL Server, DB2, PostgreSQL, MySQL, Oracle
+        <p class="text-xs text-gray-500">
+          Android · Java · Kotlin · SQLite
+        </p>
+      </article>
+
+      <article class="fade-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5 hover:shadow-md transition">
+        <header class="mb-2">
+          <h4 class="font-semibold">Projetos para terceiros</h4>
+          <span class="text-xs text-gray-500">1997–2025</span>
+        </header>
+        <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+          Desenvolvimento e manutenção de sistemas comerciais,
+          universitários e aplicativos mobile.
+        </p>
+        <p class="text-xs text-gray-500">
+          C · C# · Delphi · Java · Android · SQL Server · Oracle · PostgreSQL
         </p>
       </article>
 
@@ -242,61 +142,54 @@
   </div>
 </section>
 
-
-  
-
-    <h3>Contato</h3>
-    <p>
-      GitHub:
-      <a href="https://github.com/facrf" target="_blank" rel="noopener noreferrer">
-        github.com/facrf
-      </a>
-    </p>
-  </div>
+<!-- Contato -->
+<section id="contato" class="bg-blue-50 dark:bg-blue-900 py-20 px-6 text-center">
+  <h3 class="text-2xl font-semibold mb-4">
+    Contato
+  </h3>
+  <p>
+    GitHub:
+    <a href="https://github.com/facrf"
+       class="text-blue-600 dark:text-blue-400 hover:underline"
+       target="_blank" rel="noopener noreferrer">
+      github.com/facrf
+    </a>
+  </p>
 </section>
 
-<footer>
+<!-- Footer -->
+<footer class="bg-white dark:bg-gray-800 text-center py-6 text-sm text-gray-500">
   © 1997–2026 Fabiano Cesar. Todos os direitos reservados.
 </footer>
 
 <script>
   const username = "facrf";
-  const container = document.getElementById("repos");
+  const container = document.getElementById("repos-container");
 
-  if (/bot|crawl|spider|slurp/i.test(navigator.userAgent)) {
-    document.body.innerHTML = "";
-  }
-
-  const cacheKey = "repos_" + username;
-  const cached = sessionStorage.getItem(cacheKey);
-
-  if (cached) {
-    render(JSON.parse(cached));
-  } else {
-    fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
-      .then(r => r.json())
-      .then(data => {
-        sessionStorage.setItem(cacheKey, JSON.stringify(data));
-        render(data);
+  fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
+    .then(res => res.json())
+    .then(repos => {
+      repos.filter(r => !r.fork).forEach((repo, i) => {
+        const card = document.createElement("article");
+        card.className = "fade-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-5 hover:shadow-md transition";
+        card.innerHTML = `
+          <h4 class="font-semibold mb-1">${repo.name}</h4>
+          <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+            ${repo.description || "Sem descrição."}
+          </p>
+          <p class="text-xs text-gray-500 mb-2">
+            Linguagem: ${repo.language || "N/A"}
+          </p>
+          <a href="${repo.html_url}" target="_blank"
+             class="text-sm text-blue-600 dark:text-blue-400 hover:underline">
+            Ver no GitHub
+          </a>
+        `;
+        container.appendChild(card);
+        setTimeout(() => card.classList.add("show"), i * 100);
       });
-  }
-
-  function render(repos) {
-    repos.filter(r => !r.fork).forEach(repo => {
-      const card = document.createElement("article");
-      card.innerHTML = `
-        <h4>${repo.name}</h4>
-        <p>${repo.description || "Sem descrição."}</p>
-        <p><strong>Linguagem:</strong> ${repo.language || "N/A"}</p>
-        <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">Ver no GitHub</a>
-      `;
-      container.appendChild(card);
     });
-  }
 </script>
 
 </body>
 </html>
-
-
-
