@@ -1,0 +1,86 @@
+/* HEADER */
+header {
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  header {
+    background: #020617;
+  }
+}
+
+header > div {
+  max-width: 1100px;
+  margin: auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 1rem;
+  font-weight: 500;
+}
+
+nav a:hover {
+  color: #2563eb;
+}
+
+/* HERO */
+section:first-of-type {
+  background: #dbeafe;
+  text-align: center;
+  padding: 5rem 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  section:first-of-type {
+    background: #1e3a8a;
+  }
+}
+
+/* SEÇÕES */
+section {
+  padding: 4rem 1.5rem;
+}
+
+section > div {
+  max-width: 1100px;
+  margin: auto;
+}
+
+section h3 {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 2.5rem;
+}
+
+/* CONTATO */
+#contato {
+  background: #eff6ff;
+  text-align: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  #contato {
+    background: #1e3a8a;
+  }
+}
+
+/* FOOTER */
+footer {
+  background: #ffffff;
+  text-align: center;
+  padding: 1.5rem;
+  font-size: .8rem;
+  color: #6b7280;
+}
+
+@media (prefers-color-scheme: dark) {
+  footer {
+    background: #020617;
+    color: #94a3b8;
+  }
+}
