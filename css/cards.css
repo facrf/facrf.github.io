@@ -1,0 +1,52 @@
+/* GRID – usado em #projetos e #projeto_legado */
+#projetos .grid,
+#projeto_legado .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+  text-align: left;
+}
+
+/* CARD PADRÃO */
+#projetos .grid > div,
+#projeto_legado .grid > div {
+  background: #f1f5f9;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,.08);
+  transition: transform .3s, box-shadow .3s, background-color .3s;
+}
+
+@media (prefers-color-scheme: dark) {
+  #projetos .grid > div,
+  #projeto_legado .grid > div {
+    background: #1e293b;
+  }
+}
+
+#projetos .grid > div:hover,
+#projeto_legado .grid > div:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 16px 30px rgba(0,0,0,.25);
+  background-color: rgba(37,99,235,.08);
+}
+
+#projetos h4,
+#projeto_legado h4 {
+  font-size: 1.1rem;
+  margin-bottom: .5rem;
+}
+
+#projetos p,
+#projeto_legado p {
+  font-size: .9rem;
+  margin-bottom: .5rem;
+  color: #334155;
+}
+
+@media (prefers-color-scheme: dark) {
+  #projetos p,
+  #projeto_legado p {
+    color: #cbd5f5;
+  }
+}
