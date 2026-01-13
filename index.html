@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fabiano Cesar | Desenvolvedor</title>
 
+  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
   <script>
     tailwind.config = {
       darkMode: 'media',
+      theme: { extend: {} },
     };
   </script>
 
@@ -27,21 +28,25 @@
     }
     .hover-card:hover {
       transform: translateY(-6px) scale(1.02);
-      box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+      background-color: rgba(59,130,246,0.1);
+    }
+    .dark .hover-card:hover {
+      background-color: rgba(59,130,246,0.2);
     }
   </style>
 </head>
 
-<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500">
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-500">
 
 <!-- Header -->
 <header class="bg-white dark:bg-gray-800 shadow-md">
   <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
     <h1 class="text-xl font-bold">Fabiano Cesar</h1>
     <nav class="space-x-4">
-      <a href="#sobre" class="hover:text-blue-600">Sobre</a>
-      <a href="#projetos" class="hover:text-blue-600">Projetos</a>
-      <a href="#contato" class="hover:text-blue-600">Contato</a>
+      <a href="#sobre" class="hover:text-blue-600 dark:hover:text-blue-400">Sobre</a>
+      <a href="#projetos" class="hover:text-blue-600 dark:hover:text-blue-400">Projetos</a>
+      <a href="#contato" class="hover:text-blue-600 dark:hover:text-blue-400">Contato</a>
     </nav>
   </div>
 </header>
@@ -53,7 +58,7 @@
     Desenvolvedor full-stack focado em soluções modernas e eficientes.
   </p>
   <a href="#contato"
-     class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition">
+     class="bg-blue-600 text-white px-6 py-3 rounded-full shadow hover:bg-blue-700 transition">
     Fale comigo
   </a>
 </section>
@@ -62,8 +67,10 @@
 <section id="sobre" class="py-16 px-6 max-w-3xl mx-auto text-center">
   <h3 class="text-2xl font-semibold mb-4">Sobre mim</h3>
   <p class="text-gray-700 dark:text-gray-300">
-    Desenvolvedor com experiência em aplicações web e mobile desde 1997,
-    focado em soluções simples, duráveis e bem estruturadas.
+    Sou desenvolvedor apaixonado por criar soluções que unem eficiência e experiência do usuário.
+  </p>
+  <p class="mt-4 text-gray-700 dark:text-gray-300">
+    Experiência com aplicações web e mobile, sempre buscando boas práticas.
   </p>
 </section>
 
@@ -77,68 +84,56 @@
   </div>
 </section>
 
-<!-- Projetos Legados (ACERTADO) -->
-<section id="projeto_legado" class="bg-gray-50 dark:bg-gray-900 py-16 px-6">
+<!-- Projetos Legados -->
+<section id="projeto_legado" class="bg-white dark:bg-gray-800 py-16 px-6">
   <div class="max-w-6xl mx-auto text-center">
     <h3 class="text-2xl font-semibold mb-10">Projetos Legados</h3>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
 
-      <!-- Card -->
-      <article class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover-card card-hidden">
-        <header class="mb-3">
-          <h4 class="font-semibold text-lg">Software de Colônia de Pescadores</h4>
-          <span class="text-xs text-gray-500">2004</span>
-        </header>
-        <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
+      <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition fade-card card-hidden hover-card">
+        <h4 class="font-bold mb-1">Software de Colônia de Pescadores</h4>
+        <span class="text-xs text-gray-500 block mb-2">2004</span>
+        <p class="text-sm mb-2">
           Sistema para administração de associados e integração com o MAPA.
         </p>
         <p class="text-xs text-gray-500">
           Delphi · Firebird · Rational Rose
         </p>
-      </article>
+      </div>
 
-      <!-- Card -->
-      <article class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover-card card-hidden">
-        <header class="mb-3">
-          <h4 class="font-semibold text-lg">App para Sindicatos e Colônias</h4>
-          <span class="text-xs text-gray-500">2017</span>
-        </header>
-        <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
-          Gestão de associados, anuidades, documentação e alertas automáticos.
+      <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition fade-card card-hidden hover-card">
+        <h4 class="font-bold mb-1">App para Sindicatos e Colônias</h4>
+        <span class="text-xs text-gray-500 block mb-2">2017</span>
+        <p class="text-sm mb-2">
+          Gerenciamento de associados, anuidades e alertas automáticos.
         </p>
         <p class="text-xs text-gray-500">
           Java · Kotlin · SQLite · Scrum
         </p>
-      </article>
+      </div>
 
-      <!-- Card -->
-      <article class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover-card card-hidden">
-        <header class="mb-3">
-          <h4 class="font-semibold text-lg">Amigo do Pescador</h4>
-          <span class="text-xs text-gray-500">2020</span>
-        </header>
-        <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
-          App informativo sobre marés, fases da lua e períodos de defeso.
+      <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition fade-card card-hidden hover-card">
+        <h4 class="font-bold mb-1">Amigo do Pescador</h4>
+        <span class="text-xs text-gray-500 block mb-2">2020</span>
+        <p class="text-sm mb-2">
+          Aplicativo informativo sobre marés, fases da lua e defeso.
         </p>
         <p class="text-xs text-gray-500">
           Android · Java · Kotlin · SQLite
         </p>
-      </article>
+      </div>
 
-      <!-- Card -->
-      <article class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover-card card-hidden">
-        <header class="mb-3">
-          <h4 class="font-semibold text-lg">Projetos para terceiros</h4>
-          <span class="text-xs text-gray-500">1997–2025</span>
-        </header>
-        <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
-          Desenvolvimento e manutenção de sistemas comerciais, universitários e apps mobile.
+      <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition fade-card card-hidden hover-card">
+        <h4 class="font-bold mb-1">Projetos para terceiros</h4>
+        <span class="text-xs text-gray-500 block mb-2">1997–2025</span>
+        <p class="text-sm mb-2">
+          Sistemas comerciais, universitários e aplicativos mobile.
         </p>
         <p class="text-xs text-gray-500">
-          C · C# · Delphi · Java · Android · SQL Server · Oracle · PostgreSQL
+          C · C# · Delphi · Java · Android · SQL Server · Oracle
         </p>
-      </article>
+      </div>
 
     </div>
   </div>
@@ -147,20 +142,19 @@
 <!-- Contato -->
 <section id="contato" class="py-16 px-6 bg-blue-50 dark:bg-blue-900 text-center">
   <h3 class="text-2xl font-semibold mb-4">Contato</h3>
-  <p>
-    GitHub:
-    <a href="https://github.com/facrf"
-       class="text-blue-600 dark:text-blue-400 hover:underline"
-       target="_blank">
-      github.com/facrf
-    </a>
-  </p>
+  <p class="mb-4">GitHub:</p>
+  <a href="https://github.com/facrf"
+     class="text-blue-600 dark:text-blue-400 hover:underline">
+    github.com/facrf
+  </a>
 </section>
 
-<footer class="text-center py-6 text-sm text-gray-500 bg-white dark:bg-gray-800">
+<!-- Footer -->
+<footer class="text-center py-6 text-sm text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800">
   © 2026 Fabiano Cesar. Todos os direitos reservados.
 </footer>
 
+<!-- JS Projetos Recentes -->
 <script>
   const username = "facrf";
   const reposContainer = document.getElementById("repos-container");
@@ -168,24 +162,22 @@
   fetch(`https://api.github.com/users/${username}/repos?sort=updated`)
     .then(res => res.json())
     .then(repos => {
-      repos.filter(r => !r.fork).forEach((repo, i) => {
+      repos.forEach((repo, index) => {
+        if (repo.fork) return;
+
         const card = document.createElement("div");
-        card.className = "bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-sm hover-card card-hidden";
+        card.className = "bg-gray-100 dark:bg-gray-700 p-6 rounded-xl shadow hover:shadow-lg transition fade-card card-hidden hover-card";
         card.innerHTML = `
-          <h4 class="font-semibold mb-2">${repo.name}</h4>
-          <p class="text-sm text-gray-700 dark:text-gray-300 mb-3">
-            ${repo.description || "Sem descrição."}
-          </p>
-          <p class="text-xs text-gray-500 mb-2">
-            Linguagem: ${repo.language || "N/A"}
-          </p>
+          <h4 class="font-bold mb-2">${repo.name}</h4>
+          <p class="text-sm mb-2">${repo.description || "Sem descrição"}</p>
+          <p class="text-xs text-gray-500 mb-2">Linguagem: ${repo.language || "N/A"}</p>
           <a href="${repo.html_url}" target="_blank"
-             class="text-sm text-blue-600 dark:text-blue-400 hover:underline">
+             class="text-blue-600 dark:text-blue-400 text-sm hover:underline">
             Ver no GitHub
           </a>
         `;
         reposContainer.appendChild(card);
-        setTimeout(() => card.classList.remove("card-hidden"), i * 100);
+        setTimeout(() => card.classList.remove("card-hidden"), index * 100);
       });
     });
 </script>
