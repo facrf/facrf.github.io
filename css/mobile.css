@@ -1,0 +1,25 @@
+@media (max-width: 640px) {
+
+  header > div {
+    flex-direction: column;
+    gap: .75rem;
+  }
+
+  nav a {
+    margin: 0 .5rem;
+  }
+
+  section:first-of-type h2 {
+    font-size: 2rem;
+  }
+
+  section h3 {
+    font-size: 1.4rem;
+  }
+
+  #projetos .grid,
+  #projeto_legado .grid {
+    gap: 1.25rem;
+  }
+
+}
