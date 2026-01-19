@@ -1,0 +1,68 @@
+# ========================
+# Arquivos de texto, PDF e banco de dados
+# ========================
+*.txt
+*.pdf
+*.db
+
+# ========================
+# Sistema Operacional
+# ========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ========================
+# IDEs e editores
+# ========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# ========================
+# Logs e temporários
+# ========================
+*.log
+logs/
+tmp/
+temp/
+
+# ========================
+# Variáveis de ambiente
+# ========================
+.env
+.env.*
+
+# ========================
+# Dependências
+# ========================
+node_modules/
+vendor/
+
+# ========================
+# Build / distribuição
+# ========================
+dist/
+build/
+out/
+
+# ========================
+# Cache
+# ========================
+.cache/
+
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ========================
+# Testes
+# ========================
+coverage/
+.nyc_output/
