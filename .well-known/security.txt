@@ -1,0 +1,4 @@
+Contact: mailto:security@fabianocesar.com
+Expires: 2027-05-10T12:00:00.000Z
+Preferred-Languages: pt, en, es
+Canonical: https://fabianocesar.com/.well-known/security.txt
