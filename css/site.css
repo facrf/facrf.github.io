@@ -187,10 +187,16 @@ h3 {
   width: 2.35rem;
   aspect-ratio: 1;
   place-items: center;
+  overflow: hidden;
   border-radius: 50%;
   background: var(--ink);
   color: var(--canvas);
   font-size: 0.72rem;
+}
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .header-panel,
 .header-actions,
