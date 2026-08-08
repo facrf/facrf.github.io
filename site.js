@@ -5,8 +5,15 @@ document.documentElement.classList.add("js");
 const state = { language: "pt-br", translations: null, repositories: [] };
 const languageAliases = { pt: "pt-br", "pt-br": "pt-br", en: "en", es: "es" };
 const localeNames = { "pt-br": "pt-BR", en: "en", es: "es" };
+const openGraphLocales = { "pt-br": "pt_BR", en: "en_US", es: "es_ES" };
+const siteUrl = "https://fabianocesar.com/";
 
 function preferredLanguage() {
+  const requestedLanguage = new URLSearchParams(window.location.search)
+    .get("lang")
+    ?.toLowerCase();
+  if (requestedLanguage && languageAliases[requestedLanguage])
+    return languageAliases[requestedLanguage];
   try {
     const saved = localStorage.getItem("language");
     if (saved && languageAliases[saved]) return languageAliases[saved];
@@ -16,6 +23,40 @@ function preferredLanguage() {
     languageAliases[browserLanguage] ||
     languageAliases[browserLanguage.split("-")[0]] ||
     "pt-br"
+  );
+}
+
+function setMetaContent(selector, content) {
+  const meta = document.querySelector(selector);
+  if (meta && content) meta.content = content;
+}
+
+function synchronizeLocalizedMetadata(language) {
+  const title = text("meta_title") || document.title;
+  const description = text("meta_description");
+  const canonicalUrl = new URL(siteUrl);
+  if (language !== "pt-br") canonicalUrl.searchParams.set("lang", language);
+
+  document.title = title;
+  setMetaContent('meta[name="description"]', description);
+  setMetaContent('meta[property="og:title"]', title);
+  setMetaContent('meta[property="og:description"]', description);
+  setMetaContent('meta[property="og:locale"]', openGraphLocales[language]);
+  setMetaContent('meta[property="og:url"]', canonicalUrl.href);
+  setMetaContent('meta[name="twitter:title"]', title);
+  setMetaContent('meta[name="twitter:description"]', description);
+  document.querySelector('link[rel="canonical"]')?.setAttribute(
+    "href",
+    canonicalUrl.href,
+  );
+
+  const browserUrl = new URL(window.location.href);
+  if (language === "pt-br") browserUrl.searchParams.delete("lang");
+  else browserUrl.searchParams.set("lang", language);
+  window.history.replaceState(
+    window.history.state,
+    "",
+    `${browserUrl.pathname}${browserUrl.search}${browserUrl.hash}`,
   );
 }
 
@@ -43,10 +84,7 @@ function applyLanguage(language) {
         String(button.dataset.language === language),
       ),
     );
-  document.title = text("meta_title") || document.title;
-  const description = document.querySelector('meta[name="description"]');
-  if (description && text("meta_description"))
-    description.content = text("meta_description");
+  synchronizeLocalizedMetadata(language);
   document
     .querySelector(".language-picker")
     ?.setAttribute("aria-label", text("language_label"));
@@ -136,11 +174,13 @@ function showRepositoryFallback() {
     "",
     text("repos_error") || "Veja os projetos diretamente no GitHub.",
   );
+  message.dataset.i18n = "repos_error";
   const link = element(
     "a",
     "text-link",
     text("repos_fallback_link") || "Abrir GitHub",
   );
+  link.dataset.i18n = "repos_fallback_link";
   link.href = "https://github.com/facrf?tab=repositories";
   link.target = "_blank";
   link.rel = "noopener noreferrer";
@@ -149,9 +189,14 @@ function showRepositoryFallback() {
 
 async function loadRepositories() {
   const cacheKey = "facrf-repositories-v2";
+  let staleRepositories = [];
   try {
     const cached = JSON.parse(localStorage.getItem(cacheKey));
-    if (cached?.savedAt > Date.now() - 21600000 && Array.isArray(cached.data)) {
+    if (Array.isArray(cached?.data)) staleRepositories = cached.data;
+    if (
+      cached?.savedAt > Date.now() - 21600000 &&
+      staleRepositories.length
+    ) {
       state.repositories = cached.data;
       renderRepositories(state.repositories);
       return;
@@ -160,27 +205,37 @@ async function loadRepositories() {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 8000);
   try {
-    const response = await fetch(
-      "https://api.github.com/users/facrf/repos?sort=updated&per_page=100",
-      {
-        headers: { Accept: "application/vnd.github+json" },
-        signal: controller.signal,
-      },
-    );
-    if (!response.ok) throw new Error(`GitHub API HTTP ${response.status}`);
-    const data = await response.json();
+    let data;
+    try {
+      const response = await fetch("/repos-data.json", { signal: controller.signal });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      data = await response.json();
+    } catch (e) {
+      console.warn("Usando fallback da API do GitHub.", e);
+      const response = await fetch(
+        "https://api.github.com/users/facrf/repos?sort=updated&per_page=100",
+        {
+          headers: { Accept: "application/vnd.github+json" },
+          signal: controller.signal,
+        },
+      );
+      if (!response.ok) throw new Error(`GitHub API HTTP ${response.status}`);
+      const rawData = await response.json();
+      data = rawData
+        .filter((repo) => !repo.fork && !repo.archived)
+        .slice(0, 6)
+        .map((repo) => ({
+          name: repo.name,
+          description: repo.description,
+          language: repo.language,
+          stargazers_count: repo.stargazers_count,
+          html_url: repo.html_url,
+        }));
+    }
+
     if (!Array.isArray(data))
-      throw new TypeError("Resposta inesperada da API do GitHub");
-    state.repositories = data
-      .filter((repo) => !repo.fork && !repo.archived)
-      .slice(0, 6)
-      .map((repo) => ({
-        name: repo.name,
-        description: repo.description,
-        language: repo.language,
-        stargazers_count: repo.stargazers_count,
-        html_url: repo.html_url,
-      }));
+      throw new TypeError("Resposta inesperada de repositórios");
+    state.repositories = data;
     if (!state.repositories.length)
       throw new Error("Nenhum repositório público encontrado");
     try {
@@ -192,7 +247,12 @@ async function loadRepositories() {
     renderRepositories(state.repositories);
   } catch (error) {
     console.warn("Não foi possível carregar os repositórios.", error);
-    showRepositoryFallback();
+    if (staleRepositories.length) {
+      state.repositories = staleRepositories;
+      renderRepositories(state.repositories);
+    } else {
+      showRepositoryFallback();
+    }
   } finally {
     clearTimeout(timeout);
   }
@@ -206,23 +266,45 @@ function initializeInterface() {
     header?.classList.toggle("is-scrolled", window.scrollY > 12);
   updateHeader();
   window.addEventListener("scroll", updateHeader, { passive: true });
-  menuButton?.addEventListener("click", () => {
-    const open = menuButton.getAttribute("aria-expanded") !== "true";
-    menuButton.setAttribute("aria-expanded", String(open));
+  const closeMenu = ({ restoreFocus = false } = {}) => {
+    if (menuButton?.getAttribute("aria-expanded") !== "true") return;
+    menuButton.setAttribute("aria-expanded", "false");
     menuButton.setAttribute(
       "aria-label",
-      open
-        ? text("menu_close") || "Fechar menu"
-        : text("menu_open") || "Abrir menu",
+      text("menu_open") || "Abrir menu",
     );
-    menuPanel?.classList.toggle("is-open", open);
+    menuPanel?.classList.remove("is-open");
+    if (restoreFocus) menuButton.focus();
+  };
+  menuButton?.addEventListener("click", () => {
+    const open = menuButton.getAttribute("aria-expanded") !== "true";
+    if (!open) {
+      closeMenu();
+      return;
+    }
+    menuButton.setAttribute("aria-expanded", "true");
+    menuButton.setAttribute("aria-label", text("menu_close") || "Fechar menu");
+    menuPanel?.classList.add("is-open");
+    window.requestAnimationFrame(() => menuPanel?.querySelector("a")?.focus());
   });
   document.querySelectorAll('.site-nav a[href^="#"]').forEach((link) =>
     link.addEventListener("click", () => {
-      menuButton?.setAttribute("aria-expanded", "false");
-      menuPanel?.classList.remove("is-open");
+      closeMenu();
     }),
   );
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeMenu({ restoreFocus: true });
+  });
+  document.addEventListener("pointerdown", (event) => {
+    if (!header?.contains(event.target)) closeMenu();
+  });
+  const desktopMedia = window.matchMedia("(min-width: 961px)");
+  const handleDesktopChange = (event) => {
+    if (event.matches) closeMenu();
+  };
+  if (desktopMedia.addEventListener)
+    desktopMedia.addEventListener("change", handleDesktopChange);
+  else desktopMedia.addListener(handleDesktopChange);
   document
     .querySelectorAll("[data-language]")
     .forEach((button) =>

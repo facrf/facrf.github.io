@@ -1,0 +1,52 @@
+name: Validar site
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validar HTML
+        run: npx --yes html-validate@10.4.0 "*.html"
+
+      - name: Validar JavaScript e JSON
+        run: |
+          node --check site.js
+          jq empty traducoes.json site.webmanifest
+
+      - name: Verificar assinatura dos arquivos HTML
+        run: |
+          for html_file in *.html; do
+            grep -Fq '<!-- Developed with care by FACRF - https://github.com/facrf -->' "$html_file" || {
+              echo "Assinatura ausente em $html_file"
+              exit 1
+            }
+          done
+
+      - name: Verificar arquivos internos referenciados
+        run: |
+          while IFS= read -r site_path; do
+            local_path=".${site_path}"
+            if [ ! -e "$local_path" ]; then
+              echo "Arquivo referenciado não encontrado: $site_path"
+              exit 1
+            fi
+          done < <(
+            grep -rhoE '(href|src)="/[^"#?]*' -- *.html |
+              cut -d'"' -f2 |
+              sort -u
+          )

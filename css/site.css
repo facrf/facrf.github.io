@@ -492,6 +492,40 @@ h3 {
 .result-icon {
   color: #a7dfb8;
 }
+.code-result {
+  opacity: 0;
+}
+.code-line {
+  display: block;
+  overflow: hidden;
+  white-space: pre;
+  width: 0;
+  border-right: 2px solid transparent;
+}
+.is-visible .code-line {
+  animation: typing 0.6s steps(40, end) forwards;
+}
+.is-visible .code-line:nth-child(1) { animation-delay: 0.2s; }
+.is-visible .code-line:nth-child(2) { animation-delay: 0.8s; }
+.is-visible .code-line:nth-child(3) { animation-delay: 1.4s; }
+.is-visible .code-line:nth-child(4) { animation-delay: 2.0s; }
+.is-visible .code-line:nth-child(5) { animation-delay: 2.6s; }
+.is-visible .code-line:nth-child(6) { animation-delay: 3.2s; }
+.is-visible .code-line:nth-child(7) { animation-delay: 3.8s; }
+.is-visible .code-line:nth-child(8) { animation-delay: 4.4s; }
+
+@keyframes typing {
+  0% { width: 0; border-right-color: rgba(255, 255, 255, 0.7); }
+  90% { width: 100%; border-right-color: rgba(255, 255, 255, 0.7); }
+  100% { width: 100%; border-right-color: transparent; }
+}
+.is-visible .code-result {
+  animation: fade-in-result 0.5s ease-out forwards;
+  animation-delay: 5.2s;
+}
+@keyframes fade-in-result {
+  to { opacity: 1; }
+}
 .orbit {
   position: absolute;
   z-index: 1;
@@ -678,11 +712,15 @@ h3 {
 }
 .repo-status {
   display: flex;
-  min-height: 8rem;
+  min-height: 4rem;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   gap: 0.8rem;
   color: var(--soft);
+}
+.repo-status .text-link {
+  margin-bottom: 0;
 }
 .repo-status[hidden] {
   display: none;
@@ -1049,6 +1087,11 @@ h3 {
   border-radius: 0.3rem;
   background: var(--muted);
   font-family: var(--mono);
+}
+.legal-card p a {
+  color: var(--accent-strong);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
 }
 .legal-lead {
   color: var(--soft);

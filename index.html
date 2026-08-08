@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
+    <!-- Developed with care by FACRF - https://github.com/facrf -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
@@ -13,6 +14,8 @@
     <meta name="robots" content="index, follow" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
     <meta
       property="og:title"
       content="Fabiano Cesar — Desenvolvedor Java e Kotlin"
@@ -23,6 +26,13 @@
     />
     <meta property="og:url" content="https://fabianocesar.com/" />
     <meta property="og:site_name" content="Fabiano Cesar" />
+    <meta
+      property="og:image"
+      content="https://fabianocesar.com/fabiano-cesar-github.jpg"
+    />
+    <meta property="og:image:width" content="160" />
+    <meta property="og:image:height" content="160" />
+    <meta property="og:image:alt" content="Retrato de Fabiano Cesar" />
     <meta name="twitter:card" content="summary" />
     <meta
       name="twitter:title"
@@ -32,8 +42,33 @@
       name="twitter:description"
       content="Soluções robustas, integrações eficientes e software construído para durar."
     />
+    <meta
+      name="twitter:image"
+      content="https://fabianocesar.com/fabiano-cesar-github.jpg"
+    />
+    <meta name="twitter:image:alt" content="Retrato de Fabiano Cesar" />
     <title>Fabiano Cesar — Desenvolvedor Java e Kotlin</title>
     <link rel="canonical" href="https://fabianocesar.com/" />
+    <link
+      rel="alternate"
+      hreflang="pt-BR"
+      href="https://fabianocesar.com/"
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href="https://fabianocesar.com/?lang=en"
+    />
+    <link
+      rel="alternate"
+      hreflang="es"
+      href="https://fabianocesar.com/?lang=es"
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href="https://fabianocesar.com/"
+    />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="/css/site.css" />
@@ -89,6 +124,7 @@
           type="button"
           aria-expanded="false"
           aria-controls="site-nav"
+          aria-haspopup="true"
           aria-label="Abrir menu"
         >
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -182,11 +218,11 @@
               </div>
               <div>
                 <dt data-i18n="fact_focus_label">Especialidade</dt>
-                <dd data-i18n="fact_focus_value">Java & Kotlin</dd>
+                <dd data-i18n="fact_focus_value">Java &amp; Kotlin</dd>
               </div>
               <div>
                 <dt data-i18n="fact_scope_label">Atuação</dt>
-                <dd data-i18n="fact_scope_value">Web & Mobile</dd>
+                <dd data-i18n="fact_scope_value">Web &amp; Mobile</dd>
               </div>
             </dl>
           </div>
@@ -196,14 +232,14 @@
                 <span></span><span></span><span></span>
                 <p>Solution.kt</p>
               </div>
-              <pre><code><span class="code-keyword">data class</span> <span class="code-type">Solution</span>(
-  <span class="code-property">val</span> clarity: <span class="code-type">Boolean</span>,
-  <span class="code-property">val</span> quality: <span class="code-type">Boolean</span>,
-  <span class="code-property">val</span> value: <span class="code-type">Real</span>
-)
-
-<span class="code-keyword">fun</span> <span class="code-function">build</span>(challenge: <span class="code-type">Problem</span>) =
-  challenge.<span class="code-function">understand</span>().<span class="code-function">simplify</span>().<span class="code-function">deliver</span>()</code></pre>
+              <pre><code><span class="code-line"><span class="code-keyword">data class</span> <span class="code-type">Solution</span>(</span>
+<span class="code-line">  <span class="code-property">val</span> clarity: <span class="code-type">Boolean</span>,</span>
+<span class="code-line">  <span class="code-property">val</span> quality: <span class="code-type">Boolean</span>,</span>
+<span class="code-line">  <span class="code-property">val</span> value: <span class="code-type">Real</span></span>
+<span class="code-line">)</span>
+<span class="code-line"></span>
+<span class="code-line"><span class="code-keyword">fun</span> <span class="code-function">build</span>(challenge: <span class="code-type">Problem</span>) =</span>
+<span class="code-line">  challenge.<span class="code-function">understand</span>().<span class="code-function">simplify</span>().<span class="code-function">deliver</span>()</span></code></pre>
               <div class="code-result">
                 <span class="result-icon">✓</span
                 ><span data-i18n="code_result">Pronto para evoluir</span>
@@ -426,7 +462,77 @@
             <span class="loader" aria-hidden="true"></span
             ><span data-i18n="repos_loading">Buscando projetos recentes…</span>
           </div>
-          <div class="repo-grid" id="repos-container"></div>
+          <div class="repo-grid" id="repos-container">
+            <a
+              class="repo-card"
+              href="https://github.com/facrf/portal_dashboard"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="repo-card-top">
+                <h3>portal_dashboard</h3>
+                <svg
+                  class="external-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M14 5h5v5M19 5 9 15M17 13v6H5V7h6" />
+                </svg>
+              </div>
+              <p class="repo-description" data-i18n="repo_portal_description">
+                Dashboard simples, no estilo Heimdall/Homepage, com foco em
+                privacidade.
+              </p>
+              <div class="repo-meta"><span>PHP</span></div>
+            </a>
+            <a
+              class="repo-card"
+              href="https://github.com/facrf/Geolocaliza_draw"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="repo-card-top">
+                <h3>Geolocaliza_draw</h3>
+                <svg
+                  class="external-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M14 5h5v5M19 5 9 15M17 13v6H5V7h6" />
+                </svg>
+              </div>
+              <p class="repo-description" data-i18n="repo_geo_description">
+                Aplicação experimental para recursos de geolocalização.
+              </p>
+              <div class="repo-meta">
+                <span>HTML</span><span>★ 1</span>
+              </div>
+            </a>
+            <a
+              class="repo-card"
+              href="https://github.com/facrf/agroterra"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="repo-card-top">
+                <h3>agroterra</h3>
+                <svg
+                  class="external-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M14 5h5v5M19 5 9 15M17 13v6H5V7h6" />
+                </svg>
+              </div>
+              <p class="repo-description" data-i18n="repo_agro_description">
+                Software para gerenciamento de produtores, parceiros e
+                trabalhadores do meio rural.
+              </p>
+              <div class="repo-meta">
+                <span data-i18n="repo_management">Gestão</span>
+              </div>
+            </a>
+          </div>
           <noscript
             ><p class="noscript-message">
               Os projetos públicos estão disponíveis em
