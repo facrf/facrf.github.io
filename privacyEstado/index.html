@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Política de Privacidade — Estado: Plano Quinquenal</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f8f9fa;
+      --surface: #ffffff;
+      --text: #212529;
+      --text-muted: #55595c;
+      --primary: #a31d1d;
+      --border: #e2e8f0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121417;
+        --surface: #1b1e23;
+        --text: #e6edf3;
+        --text-muted: #9ba1a6;
+        --primary: #e05d5d;
+        --border: #30363d;
+      }
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    .container {
+      max-width: 48rem;
+      margin: 0 auto;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    h1 {
+      color: var(--primary);
+      font-size: 2rem;
+      line-height: 1.2;
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 0.75rem;
+    }
+
+    h2 {
+      color: var(--text);
+      font-size: 1.35rem;
+      line-height: 1.3;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.4rem;
+    }
+
+    p, ul {
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    .meta-box {
+      background-color: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.75rem;
+      font-size: 0.95rem;
+    }
+
+    .meta-box p {
+      margin: 0.25rem 0;
+    }
+
+    strong {
+      color: var(--text);
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Política de Privacidade</h1>
+    
+    <div class="meta-box">
+      <p><strong>Aplicativo:</strong> Estado: Plano Quinquenal</p>
+      <p><strong>Identificador (Package Name):</strong> <code>com.fabianocesar.estado</code></p>
+      <p><strong>Data de vigência e última atualização:</strong> 5 de setembro de 2026</p>
+    </div>
+
+    <h2>1. Visão Geral e Princípio de Privacidade</h2>
+    <p>
+      O <strong>Estado: Plano Quinquenal</strong> é um jogo casual <em>idle/clicker</em> projetado para funcionar de maneira totalmente <strong>local e offline</strong>.
+      Respeitamos integralmente a sua privacidade: o aplicativo <strong>não coleta, não armazena, não transmite, não compartilha e não vende</strong> qualquer dado pessoal, identificador exclusivo de dispositivo ou informação de navegação.
+    </p>
+
+    <h2>2. Coleta e Rastreamento de Dados</h2>
+    <p>O aplicativo opera sob estrita política de não coleta:</p>
+    <ul>
+      <li><strong>Sem contas ou cadastros:</strong> Você não precisa criar conta, fornecer e-mail, senha ou número de telefone para jogar.</li>
+      <li><strong>Sem anúncios:</strong> Não há exibição de propagandas e nenhum SDK de redes de anúncios foi integrado.</li>
+      <li><strong>Sem análise e telemetria:</strong> Não utilizamos serviços de rastreamento, Google Analytics, Firebase Analytics, Crashlytics ou rastreadores de terceiros.</li>
+      <li><strong>Sem identificadores de publicidade:</strong> O jogo não lê nem solicita o ID de publicidade do Android (AAID).</li>
+      <li><strong>Sem servidores ou nuvem:</strong> O jogo não se comunica com servidores externos nem possui banco de dados em nuvem operado pelo desenvolvedor.</li>
+    </ul>
+
+    <h2>3. Armazenamento de Dados no Dispositivo</h2>
+    <p>
+      Todo o funcionamento do jogo ocorre exclusivamente no aparelho do jogador:
+    </p>
+    <ul>
+      <li><strong>Dados salvos:</strong> Apenas o progresso do jogo (condecorações, carimbos, melhorias, itens da Fila do Pão, rádios colecionadas) e ajustes de preferências (efeitos sonoros, volume, vibração háptica e animações reduzidas).</li>
+      <li><strong>Local de armazenamento:</strong> Os dados são gravados localmente no mecanismo privado do aplicativo no Android (<code>Preferences DataStore</code>).</li>
+      <li><strong>Isolamento e backup:</strong> Esse armazenamento é acessível apenas pelo próprio jogo. O backup em nuvem e a transferência automática de dados do Android estão expressamente desativados para assegurar que nada saia do aparelho sem seu consentimento.</li>
+    </ul>
+
+    <h2>4. Permissões do Sistema e Conexão de Rede</h2>
+    <ul>
+      <li><strong>Sem acesso à internet:</strong> O aplicativo não declara nem solicita permissão de internet (<code>android.permission.INTERNET</code>). O jogo não pode e não tenta se conectar à rede.</li>
+      <li><strong>Sem permissões sensíveis:</strong> O aplicativo não solicita acesso a localização, contatos, câmera, microfone, arquivos do sistema ou fotos.</li>
+      <li><strong>Integridade local:</strong> Todo o conteúdo, áudio, músicas e elementos visuais já acompanham a instalação original e nenhum código ou recurso adicional é baixado posteriormente.</li>
+    </ul>
+
+    <h2>5. Compartilhamento Iniciado pelo Usuário</h2>
+    <p>
+      Na tela <em>Comissário da Verdade</em>, há um recurso opcional e voluntário para compartilhar provérbios satíricos gerados pelo jogo:
+    </p>
+    <ul>
+      <li>O envio <strong>somente é iniciado se o usuário tocar explicitamente</strong> no botão de compartilhamento.</li>
+      <li>Ao acionar o botão, o sistema operacional Android exibe o seletor nativo de compartilhamento (<code>ACTION_SEND</code>).</li>
+      <li>O jogo apenas entrega o texto fictício ao sistema e <strong>não monitora, não rastreia e não armazena</strong> qual aplicativo de destino foi escolhido ou para quem a mensagem foi enviada.</li>
+    </ul>
+
+    <h2>6. Controle e Exclusão de Dados</h2>
+    <p>
+      O jogador detém controle total sobre os dados armazenados localmente:
+    </p>
+    <ul>
+      <li><strong>Redefinição interna:</strong> O progresso e as preferências podem ser apagados a qualquer momento no menu de <em>Configurações</em> por meio da opção <em>“Redefinir progresso”</em> (com diálogo de confirmação explícita).</li>
+      <li><strong>Desinstalação:</strong> Ao desinstalar o jogo do dispositivo Android, todos os dados locais e preferências são removidos imediatamente e em definitivo pelo próprio sistema operacional.</li>
+      <li><strong>Inexistência de cadastro remoto:</strong> Como nenhum dado jamais é transmitido para servidores, não há cadastros remotos ou dados em nuvem a serem excluídos.</li>
+    </ul>
+
+    <h2>7. Privacidade de Crianças</h2>
+    <p>
+      O aplicativo não direciona suas atividades à coleta de dados de menores de idade, tampouco realiza coleta de dados de qualquer faixa etária. O conteúdo do jogo é uma paródia satírica e inofensiva. A classificação indicativa etária oficial é definida diretamente na ficha do produto na Google Play Store.
+    </p>
+
+    <h2>8. Alterações nesta Política</h2>
+    <p>
+      Caso surja alguma atualização técnica ou inclusão de novos recursos que altere o comportamento do aplicativo, esta Política de Privacidade será devidamente revisada e publicada nesta mesma página com a respectiva data de vigência atualizada.
+    </p>
+
+    <h2>9. Contato do Desenvolvedor</h2>
+    <p>
+      Em caso de dúvidas, esclarecimentos ou sugestões relacionadas a esta Política de Privacidade ou ao aplicativo, entre em contato através das informações de suporte disponibilizadas na página oficial do aplicativo na <strong>Google Play Store</strong>.
+    </p>
+
+    <footer>
+      <p>© 2026 Estado: Plano Quinquenal — Todos os direitos reservados.</p>
+      <p>Desenvolvido para Android (SDK 26+).</p>
+    </footer>
+  </main>
+</body>
+</html>
