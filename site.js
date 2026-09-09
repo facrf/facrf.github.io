@@ -205,39 +205,38 @@ async function loadRepositories() {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 8000);
   try {
-    let data;
-    try {
-      const response = await fetch("/repos-data.json", { signal: controller.signal });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      data = await response.json();
-    } catch (e) {
-      console.warn("Usando fallback da API do GitHub.", e);
-      const response = await fetch(
-        "https://api.github.com/users/facrf/repos?sort=updated&per_page=100",
-        {
-          headers: { Accept: "application/vnd.github+json" },
-          signal: controller.signal,
-        },
-      );
-      if (!response.ok) throw new Error(`GitHub API HTTP ${response.status}`);
-      const rawData = await response.json();
-      data = rawData
-        .filter((repo) => !repo.fork && !repo.archived)
-        .slice(0, 6)
-        .map((repo) => ({
-          name: repo.name,
-          description: repo.description,
-          language: repo.language,
-          stargazers_count: repo.stargazers_count,
-          html_url: repo.html_url,
-        }));
-    }
+    const response = await fetch(
+      "https://api.github.com/users/facrf/repos?sort=updated&per_page=100",
+      {
+        headers: { Accept: "application/vnd.github+json" },
+        signal: controller.signal,
+      },
+    );
+    if (!response.ok) throw new Error(`GitHub API HTTP ${response.status}`);
+    const rawData = await response.json();
+    const data = rawData
+      .filter(
+        (repo) =>
+          !repo.fork &&
+          !repo.archived &&
+          repo.name !== "facrf" &&
+          repo.name !== "facrf.github.io" &&
+          Boolean(repo.description),
+      )
+      .slice(0, 6)
+      .map((repo) => ({
+        name: repo.name,
+        description: repo.description,
+        language: repo.language,
+        stargazers_count: repo.stargazers_count,
+        html_url: repo.html_url,
+      }));
 
     if (!Array.isArray(data))
       throw new TypeError("Resposta inesperada de repositórios");
     state.repositories = data;
     if (!state.repositories.length)
-      throw new Error("Nenhum repositório público encontrado");
+      throw new Error("Nenhum repositório público qualificado encontrado");
     try {
       localStorage.setItem(
         cacheKey,
@@ -246,12 +245,18 @@ async function loadRepositories() {
     } catch (_) {}
     renderRepositories(state.repositories);
   } catch (error) {
-    console.warn("Não foi possível carregar os repositórios.", error);
+    console.warn("Não foi possível carregar os repositórios atualizados.", error);
     if (staleRepositories.length) {
       state.repositories = staleRepositories;
       renderRepositories(state.repositories);
     } else {
-      showRepositoryFallback();
+      const container = document.getElementById("repos-container");
+      if (container && container.children.length > 0) {
+        const status = document.getElementById("repo-status");
+        if (status) status.hidden = true;
+      } else {
+        showRepositoryFallback();
+      }
     }
   } finally {
     clearTimeout(timeout);

@@ -8,6 +8,26 @@
   <url>
     <loc>https://fabianocesar.com/security-policy.html</loc>
     <changefreq>yearly</changefreq>
-    <priority>0.2</priority>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://fabianocesar.com/privacidade/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://fabianocesar.com/privacidederxauto/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://fabianocesar.com/privacidedfin/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://fabianocesar.com/privacyEstado/</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>
