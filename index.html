@@ -434,6 +434,247 @@
           </div>
         </div>
       </section>
+      <section
+        id="meus-apps"
+        class="section app-catalog"
+        aria-labelledby="apps-title"
+      >
+        <style>
+          #meus-apps.app-catalog {
+            border-block: 1px solid var(--line);
+            background: color-mix(in srgb, var(--surface) 72%, transparent);
+          }
+          #meus-apps .app-catalog-heading {
+            max-width: 44rem;
+            margin-bottom: clamp(2.5rem, 6vw, 4rem);
+          }
+          #meus-apps .app-catalog-kicker {
+            margin-bottom: 0.7rem;
+            color: var(--accent);
+            font: 700 0.72rem var(--mono);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+          }
+          #meus-apps .app-catalog-heading h2 {
+            margin-bottom: 0.9rem;
+          }
+          #meus-apps .app-catalog-heading > p:last-child {
+            margin-bottom: 0;
+            color: var(--soft);
+          }
+          #meus-apps .app-catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+          }
+          #meus-apps .app-catalog-card {
+            display: flex;
+            min-height: 100%;
+            flex-direction: column;
+            padding: clamp(1.25rem, 3vw, 1.75rem);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--raised);
+            box-shadow: 0 12px 32px rgba(23, 33, 29, 0.05);
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+          }
+          #meus-apps .app-catalog-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 18px 42px rgba(23, 33, 29, 0.11);
+            transform: translateY(-4px);
+          }
+          #meus-apps .app-catalog-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.35rem;
+          }
+          #meus-apps .app-catalog-icon {
+            width: 4rem;
+            height: 4rem;
+            flex: 0 0 auto;
+            border-radius: 1rem;
+            box-shadow: 0 5px 14px rgba(23, 33, 29, 0.16);
+            object-fit: cover;
+          }
+          #meus-apps .app-catalog-card h3 {
+            margin: 0 0 0.25rem;
+            font-size: clamp(1.25rem, 2vw, 1.55rem);
+          }
+          #meus-apps .app-catalog-version {
+            margin: 0;
+            color: var(--soft);
+            font: 0.72rem var(--mono);
+          }
+          #meus-apps .app-catalog-description {
+            margin-bottom: 1.5rem;
+            color: var(--soft);
+            font-size: 0.93rem;
+            white-space: pre-line;
+          }
+          #meus-apps .app-catalog-footer {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: auto;
+          }
+          #meus-apps .app-catalog-package {
+            max-width: 54%;
+            margin: 0;
+            color: var(--soft);
+            font: 0.65rem/1.45 var(--mono);
+            overflow-wrap: anywhere;
+          }
+          #meus-apps .app-catalog-play-badge {
+            display: inline-flex;
+            flex: 0 0 auto;
+            border-radius: 0.35rem;
+          }
+          #meus-apps .app-catalog-play-badge img {
+            display: block;
+            width: auto;
+            height: 2.5rem;
+          }
+          @media (max-width: 700px) {
+            #meus-apps .app-catalog-grid {
+              grid-template-columns: 1fr;
+            }
+          }
+          @media (max-width: 420px) {
+            #meus-apps .app-catalog-footer {
+              align-items: start;
+              flex-direction: column;
+            }
+            #meus-apps .app-catalog-package {
+              max-width: none;
+            }
+          }
+        </style>
+        <div class="shell">
+          <div class="app-catalog-heading reveal">
+            <p class="app-catalog-kicker">Aplicativos Android</p>
+            <h2 id="apps-title">Apps para facilitar o dia a dia.</h2>
+            <p>Conheça os aplicativos publicados no Google Play.</p>
+          </div>
+          <div
+            class="app-catalog-grid"
+            id="app-catalog-container"
+            aria-live="polite"
+          ></div>
+        </div>
+      </section>
+      <script>
+        (() => {
+          const appsData = [
+            {
+              id: "com.fabianocesar.estado",
+              nome: "Estado: Plano Quinquenal",
+              versao: "1.0.0",
+              descricao:
+                "O expediente nunca termina — mas os carimbos precisam continuar!\n\nBem-vindo ao Estado: Plano Quinquenal, um jogo casual idle/clicker de sátira burocrática, totalmente local e offline. Assine formulários, automatize repartições públicas fictícias e cumpra metas produtivas implacáveis para alcançar a glória administrativa.\n\nAqui, a burocracia não é um obstáculo: é a sua maior aliada.",
+              iconeUrl:
+                "https://play-lh.googleusercontent.com/dB54M-0OK8VdRD6dJa8Xf-NYYoSL_ShXhh-tY3k9bShNRQGRlVwVTLf2h15Xljz_XvV76HhY81_iOH0IalWmiA=s0-br30",
+              playStoreUrl:
+                "https://play.google.com/store/apps/details?id=com.fabianocesar.estado",
+            },
+            {
+              id: "com.facrf.rxauto",
+              nome: "RXAuto",
+              versao: "1.0",
+              descricao:
+                "RxAuto é seu organizador completo para cuidar do veículo com mais tranquilidade. Registre abastecimentos, manutenções, despesas e lembretes, acompanhe indicadores importantes e mantenha documentos e fotos protegidos no seu aparelho.",
+              iconeUrl:
+                "https://play-lh.googleusercontent.com/5BT_1tXRcfBVzpvlf8IqRRVTdS5qx23xhghMGYqvOjZ5S_wz9zCBbS6Gny8zo_EMYm9Z_7Ch9CfQDr6huOHbxg=s0-br30",
+              playStoreUrl:
+                "https://play.google.com/store/apps/details?id=com.facrf.rxauto",
+            },
+            {
+              id: "com.facrf.edfin",
+              nome: "edFin — Finanças Pessoais",
+              versao: "1.0.2",
+              descricao:
+                "edFin — Finanças Pessoais é um aplicativo brasileiro para organizar sua vida financeira com clareza, privacidade e sem complicação.\n\nCadastre contas, dívidas, valores a receber, metas, reserva de emergência e limites mensais por categoria. Acompanhe vencimentos, pagamentos, recebimentos e movimentações recentes em um só lugar.",
+              iconeUrl:
+                "https://play-lh.googleusercontent.com/bY90ETJKM5dHw-xcy9iHXDgJaIUwgauQcYX1waDBbyP-mV14xjVBDsqyNw8Se9dZOnCA8rOnaecq7hlAps1Z=s0-br30",
+              playStoreUrl:
+                "https://play.google.com/store/apps/details?id=com.facrf.edfin",
+            },
+            {
+              id: "com.ideias.appsite",
+              nome: "AppSite",
+              versao: "1.2",
+              descricao:
+                "Neste aplicativo temos desde noções básicas de programação até software de auxilio a criacao de sistemas informatizados",
+              iconeUrl:
+                "https://play-lh.googleusercontent.com/lIJlkmSeCY8nXYVTiXJ4qLS09f7DnOFp9TT6Ssc9sw3b1iXOsGl8ij0F14wqxaoBQpufSUfpgHuAPhVpO5Iu=s0-br30",
+              playStoreUrl:
+                "https://play.google.com/store/apps/details?id=com.ideias.appsite",
+            },
+          ];
+
+          const container = document.getElementById("app-catalog-container");
+          const playBadgeUrl =
+            "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png";
+
+          if (!container) return;
+
+          const createCard = (app) => {
+            const article = document.createElement("article");
+            article.className = "app-catalog-card reveal";
+
+            const header = document.createElement("div");
+            header.className = "app-catalog-card-header";
+            const icon = document.createElement("img");
+            icon.className = "app-catalog-icon";
+            icon.src = app.iconeUrl;
+            icon.alt = "";
+            icon.width = 64;
+            icon.height = 64;
+            icon.loading = "lazy";
+            const titleGroup = document.createElement("div");
+            const title = document.createElement("h3");
+            title.textContent = app.nome;
+            const version = document.createElement("p");
+            version.className = "app-catalog-version";
+            version.textContent = `Versão ${app.versao}`;
+            titleGroup.append(title, version);
+            header.append(icon, titleGroup);
+
+            const description = document.createElement("p");
+            description.className = "app-catalog-description";
+            description.textContent = app.descricao;
+
+            const footer = document.createElement("footer");
+            footer.className = "app-catalog-footer";
+            const packageName = document.createElement("p");
+            packageName.className = "app-catalog-package";
+            packageName.textContent = app.id;
+            const playLink = document.createElement("a");
+            playLink.className = "app-catalog-play-badge";
+            playLink.href = app.playStoreUrl;
+            playLink.target = "_blank";
+            playLink.rel = "noopener noreferrer";
+            playLink.setAttribute(
+              "aria-label",
+              `Disponível no Google Play: ${app.nome}`,
+            );
+            const badge = document.createElement("img");
+            badge.src = playBadgeUrl;
+            badge.alt = "Disponível no Google Play";
+            badge.width = 135;
+            badge.height = 40;
+            badge.loading = "lazy";
+            playLink.append(badge);
+            footer.append(packageName, playLink);
+
+            article.append(header, description, footer);
+            return article;
+          };
+
+          container.replaceChildren(...appsData.map(createCard));
+        })();
+      </script>
       <section class="section open-source" id="codigo">
         <div class="shell">
           <div class="section-heading section-heading-row reveal">
