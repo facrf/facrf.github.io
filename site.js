@@ -98,6 +98,9 @@ function applyLanguage(language) {
   document
     .querySelector(".theme-toggle")
     ?.setAttribute("aria-label", text("theme_toggle"));
+  window.dispatchEvent(
+    new CustomEvent("site:languagechange", { detail: { language } }),
+  );
   try {
     localStorage.setItem("language", language);
   } catch (_) {}

@@ -135,6 +135,7 @@
           <nav class="site-nav" aria-label="Navegação principal">
             <a href="#sobre" data-i18n="nav_about">Sobre</a
             ><a href="#trajetoria" data-i18n="nav_journey">Trajetória</a
+            ><a href="#meus-apps" data-i18n="nav_apps">Apps</a
             ><a href="#codigo" data-i18n="nav_code">Código</a
             ><a href="#contato" data-i18n="nav_contact">Contato</a>
           </nav>
@@ -467,6 +468,28 @@
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1rem;
           }
+          #meus-apps .app-catalog-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            margin: -1.25rem 0 2rem;
+          }
+          #meus-apps .app-catalog-filter {
+            padding: 0.45rem 0.8rem;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--raised);
+            color: var(--soft);
+            cursor: pointer;
+            font: 700 0.72rem var(--mono);
+            transition: 0.18s;
+          }
+          #meus-apps .app-catalog-filter:hover,
+          #meus-apps .app-catalog-filter[aria-pressed="true"] {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #fff;
+          }
           #meus-apps .app-catalog-card {
             display: flex;
             min-height: 100%;
@@ -512,6 +535,36 @@
             font-size: 0.93rem;
             white-space: pre-line;
           }
+          #meus-apps .app-catalog-gallery {
+            position: relative;
+            display: block;
+            height: 10.5rem;
+            margin: 0 0 1.5rem;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 0.85rem;
+            background: var(--muted);
+          }
+          #meus-apps .app-catalog-gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.35s ease;
+          }
+          #meus-apps .app-catalog-gallery:hover img {
+            transform: scale(1.04);
+          }
+          #meus-apps .app-catalog-gallery-caption {
+            position: absolute;
+            right: 0.6rem;
+            bottom: 0.6rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.72);
+            color: #fff;
+            font: 0.6rem var(--mono);
+          }
           #meus-apps .app-catalog-footer {
             display: flex;
             align-items: end;
@@ -528,13 +581,63 @@
           }
           #meus-apps .app-catalog-play-badge {
             display: inline-flex;
+            min-width: 10.5rem;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.42rem 0.75rem 0.42rem 0.55rem;
+            border: 1px solid rgba(255, 255, 255, 0.42);
             flex: 0 0 auto;
             border-radius: 0.35rem;
+            background: #000;
+            color: #fff;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.18s, box-shadow 0.18s;
           }
-          #meus-apps .app-catalog-play-badge img {
+          #meus-apps .app-catalog-play-badge:hover {
+            box-shadow: 0 5px 13px rgba(0, 0, 0, 0.28);
+            transform: translateY(-2px);
+          }
+          #meus-apps .app-catalog-play-icon {
             display: block;
-            width: auto;
-            height: 2.5rem;
+            width: 1.75rem;
+            height: 1.95rem;
+            flex: 0 0 auto;
+          }
+          #meus-apps .app-catalog-play-copy {
+            display: grid;
+            line-height: 1.05;
+          }
+          #meus-apps .app-catalog-play-copy small {
+            font-size: 0.52rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+          }
+          #meus-apps .app-catalog-play-copy strong {
+            margin-top: 0.15rem;
+            font-family: Arial, sans-serif;
+            font-size: 1.02rem;
+            font-weight: 500;
+            letter-spacing: -0.03em;
+          }
+          #meus-apps .app-catalog-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+          }
+          #meus-apps .app-catalog-qr {
+            display: grid;
+            width: 2.85rem;
+            height: 2.85rem;
+            place-items: center;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            border-radius: 0.35rem;
+            background: #fff;
+          }
+          #meus-apps .app-catalog-qr img {
+            width: 100%;
+            height: 100%;
           }
           @media (max-width: 700px) {
             #meus-apps .app-catalog-grid {
@@ -553,10 +656,17 @@
         </style>
         <div class="shell">
           <div class="app-catalog-heading reveal">
-            <p class="app-catalog-kicker">Aplicativos Android</p>
-            <h2 id="apps-title">Apps para facilitar o dia a dia.</h2>
-            <p>Conheça os aplicativos publicados no Google Play.</p>
+            <p class="app-catalog-kicker" data-i18n="apps_kicker">
+              Aplicativos Android
+            </p>
+            <h2 id="apps-title" data-i18n="apps_title">
+              Apps para facilitar o dia a dia.
+            </h2>
+            <p data-i18n="apps_intro">
+              Conheça os aplicativos publicados no Google Play.
+            </p>
           </div>
+          <div class="app-catalog-filters" id="app-catalog-filters"></div>
           <div
             class="app-catalog-grid"
             id="app-catalog-container"
@@ -571,8 +681,15 @@
               id: "com.fabianocesar.estado",
               nome: "Estado: Plano Quinquenal",
               versao: "1.0.0",
-              descricao:
-                "O expediente nunca termina — mas os carimbos precisam continuar!\n\nBem-vindo ao Estado: Plano Quinquenal, um jogo casual idle/clicker de sátira burocrática, totalmente local e offline. Assine formulários, automatize repartições públicas fictícias e cumpra metas produtivas implacáveis para alcançar a glória administrativa.\n\nAqui, a burocracia não é um obstáculo: é a sua maior aliada.",
+              descricao: {
+                "pt-br":
+                  "O expediente nunca termina — mas os carimbos precisam continuar!\n\nBem-vindo ao Estado: Plano Quinquenal, um jogo casual idle/clicker de sátira burocrática, totalmente local e offline. Assine formulários, automatize repartições públicas fictícias e cumpra metas produtivas implacáveis para alcançar a glória administrativa.\n\nAqui, a burocracia não é um obstáculo: é a sua maior aliada.",
+                en: "The workday never ends — but the stamps must keep moving!\n\nWelcome to Estado: Plano Quinquenal, a fully local, offline casual idle/clicker game that satirizes bureaucracy. Sign forms, automate fictional public offices, and meet relentless production goals to achieve administrative glory.\n\nHere, bureaucracy is not an obstacle: it is your greatest ally.",
+                es: "La jornada nunca termina, ¡pero los sellos deben seguir funcionando!\n\nBienvenido a Estado: Plano Quinquenal, un juego casual idle/clicker de sátira burocrática, totalmente local y sin conexión. Firma formularios, automatiza oficinas públicas ficticias y cumple metas de producción implacables para alcanzar la gloria administrativa.\n\nAquí, la burocracia no es un obstáculo: es tu mayor aliada.",
+              },
+              categoria: "game",
+              screenshotUrl:
+                "https://play-lh.googleusercontent.com/Sa-7f4zY0Y4vEO-qcej2UzXx_LvzsaPAwktaIYM2eeRqYbAvH8Y_RqsF0b61hl5E_RZRevjfildPfqqQYfwaTQ",
               iconeUrl:
                 "https://play-lh.googleusercontent.com/dB54M-0OK8VdRD6dJa8Xf-NYYoSL_ShXhh-tY3k9bShNRQGRlVwVTLf2h15Xljz_XvV76HhY81_iOH0IalWmiA=s0-br30",
               playStoreUrl:
@@ -582,8 +699,15 @@
               id: "com.facrf.rxauto",
               nome: "RXAuto",
               versao: "1.0",
-              descricao:
-                "RxAuto é seu organizador completo para cuidar do veículo com mais tranquilidade. Registre abastecimentos, manutenções, despesas e lembretes, acompanhe indicadores importantes e mantenha documentos e fotos protegidos no seu aparelho.",
+              descricao: {
+                "pt-br":
+                  "RxAuto é seu organizador completo para cuidar do veículo com mais tranquilidade. Registre abastecimentos, manutenções, despesas e lembretes, acompanhe indicadores importantes e mantenha documentos e fotos protegidos no seu aparelho.",
+                en: "RxAuto is your complete organizer for taking care of your vehicle with greater peace of mind. Record fuel stops, maintenance, expenses, and reminders; follow key indicators; and keep documents and photos protected on your device.",
+                es: "RxAuto es tu organizador completo para cuidar tu vehículo con mayor tranquilidad. Registra abastecimientos, mantenimientos, gastos y recordatorios; sigue indicadores importantes y conserva documentos y fotos protegidos en tu dispositivo.",
+              },
+              categoria: "utility",
+              screenshotUrl:
+                "https://play-lh.googleusercontent.com/hFaqOYUHePoTkLcvxT_CP1hjakdHJJYXdJZtrRzAGErPoWFkZXpIv_p4YOsJfHQ4ID69s1axBdIGFlFJUbkVPvY",
               iconeUrl:
                 "https://play-lh.googleusercontent.com/5BT_1tXRcfBVzpvlf8IqRRVTdS5qx23xhghMGYqvOjZ5S_wz9zCBbS6Gny8zo_EMYm9Z_7Ch9CfQDr6huOHbxg=s0-br30",
               playStoreUrl:
@@ -593,8 +717,15 @@
               id: "com.facrf.edfin",
               nome: "edFin — Finanças Pessoais",
               versao: "1.0.2",
-              descricao:
-                "edFin — Finanças Pessoais é um aplicativo brasileiro para organizar sua vida financeira com clareza, privacidade e sem complicação.\n\nCadastre contas, dívidas, valores a receber, metas, reserva de emergência e limites mensais por categoria. Acompanhe vencimentos, pagamentos, recebimentos e movimentações recentes em um só lugar.",
+              descricao: {
+                "pt-br":
+                  "edFin — Finanças Pessoais é um aplicativo brasileiro para organizar sua vida financeira com clareza, privacidade e sem complicação.\n\nCadastre contas, dívidas, valores a receber, metas, reserva de emergência e limites mensais por categoria. Acompanhe vencimentos, pagamentos, recebimentos e movimentações recentes em um só lugar.",
+                en: "edFin — Personal Finance is a Brazilian app for organizing your financial life with clarity, privacy, and no hassle.\n\nAdd accounts, debts, receivables, goals, an emergency fund, and monthly category limits. Track due dates, payments, income, and recent activity in one place.",
+                es: "edFin — Finanzas Personales es una aplicación brasileña para organizar tu vida financiera con claridad, privacidad y sin complicaciones.\n\nRegistra cuentas, deudas, importes por cobrar, metas, fondo de emergencia y límites mensuales por categoría. Sigue vencimientos, pagos, cobros y movimientos recientes en un solo lugar.",
+              },
+              categoria: "finance",
+              screenshotUrl:
+                "https://play-lh.googleusercontent.com/TtIYE5wm0EJsef0OD4o9s1UWXNscJO5CTG3Ft6Ga7u7---7U7h_It2o3PWhhEwshymQmwxF0w1DjUXx8-_t0",
               iconeUrl:
                 "https://play-lh.googleusercontent.com/bY90ETJKM5dHw-xcy9iHXDgJaIUwgauQcYX1waDBbyP-mV14xjVBDsqyNw8Se9dZOnCA8rOnaecq7hlAps1Z=s0-br30",
               playStoreUrl:
@@ -604,8 +735,15 @@
               id: "com.ideias.appsite",
               nome: "AppSite",
               versao: "1.2",
-              descricao:
-                "Neste aplicativo temos desde noções básicas de programação até software de auxilio a criacao de sistemas informatizados",
+              descricao: {
+                "pt-br":
+                  "Neste aplicativo temos desde noções básicas de programação até software de auxílio à criação de sistemas informatizados.",
+                en: "This app covers everything from programming fundamentals to software that supports the creation of information systems.",
+                es: "Esta aplicación abarca desde nociones básicas de programación hasta software que ayuda a crear sistemas informatizados.",
+              },
+              categoria: "education",
+              screenshotUrl:
+                "https://play-lh.googleusercontent.com/pHEMy-tgBglfPsQfj7KllbwM0nsxwK4We2JMzC8cFgP_kyGv_5MHqe7--DhItEtyIpSInb7iQBCg26s8Cm2m",
               iconeUrl:
                 "https://play-lh.googleusercontent.com/lIJlkmSeCY8nXYVTiXJ4qLS09f7DnOFp9TT6Ssc9sw3b1iXOsGl8ij0F14wqxaoBQpufSUfpgHuAPhVpO5Iu=s0-br30",
               playStoreUrl:
@@ -614,14 +752,51 @@
           ];
 
           const container = document.getElementById("app-catalog-container");
-          const playBadgeUrl =
-            "https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png";
+          const filterContainer = document.getElementById("app-catalog-filters");
+          if (!container || !filterContainer) return;
 
-          if (!container) return;
+          const catalogLabels = {
+            "pt-br": {
+              version: "Versão",
+              available: "Disponível no",
+              screenshot: "Ver prévia do aplicativo",
+              qr: "Abrir QR Code do aplicativo",
+              all: "Todos",
+              game: "Jogo",
+              utility: "Utilitário",
+              finance: "Finanças",
+              education: "Educação",
+            },
+            en: {
+              version: "Version",
+              available: "Get it on",
+              screenshot: "View app preview",
+              qr: "Open app QR code",
+              all: "All",
+              game: "Game",
+              utility: "Utility",
+              finance: "Finance",
+              education: "Education",
+            },
+            es: {
+              version: "Versión",
+              available: "Disponible en",
+              screenshot: "Ver vista previa de la aplicación",
+              qr: "Abrir código QR de la aplicación",
+              all: "Todos",
+              game: "Juego",
+              utility: "Utilidad",
+              finance: "Finanzas",
+              education: "Educación",
+            },
+          };
+          const categories = ["all", "game", "utility", "finance", "education"];
+          let activeCategory = "all";
 
-          const createCard = (app) => {
+          const createCard = (app, language) => {
+            const labels = catalogLabels[language] || catalogLabels["pt-br"];
             const article = document.createElement("article");
-            article.className = "app-catalog-card reveal";
+            article.className = "app-catalog-card";
 
             const header = document.createElement("div");
             header.className = "app-catalog-card-header";
@@ -637,13 +812,29 @@
             title.textContent = app.nome;
             const version = document.createElement("p");
             version.className = "app-catalog-version";
-            version.textContent = `Versão ${app.versao}`;
+            version.textContent = `${labels.version} ${app.versao}`;
             titleGroup.append(title, version);
             header.append(icon, titleGroup);
 
             const description = document.createElement("p");
             description.className = "app-catalog-description";
-            description.textContent = app.descricao;
+            description.textContent =
+              app.descricao[language] || app.descricao["pt-br"];
+
+            const gallery = document.createElement("a");
+            gallery.className = "app-catalog-gallery";
+            gallery.href = app.playStoreUrl;
+            gallery.target = "_blank";
+            gallery.rel = "noopener noreferrer";
+            gallery.setAttribute("aria-label", `${labels.screenshot}: ${app.nome}`);
+            const screenshot = document.createElement("img");
+            screenshot.src = app.screenshotUrl;
+            screenshot.alt = "";
+            screenshot.loading = "lazy";
+            const caption = document.createElement("span");
+            caption.className = "app-catalog-gallery-caption";
+            caption.textContent = labels.screenshot;
+            gallery.append(screenshot, caption);
 
             const footer = document.createElement("footer");
             footer.className = "app-catalog-footer";
@@ -657,22 +848,70 @@
             playLink.rel = "noopener noreferrer";
             playLink.setAttribute(
               "aria-label",
-              `Disponível no Google Play: ${app.nome}`,
+              `${labels.available} Google Play: ${app.nome}`,
             );
-            const badge = document.createElement("img");
-            badge.src = playBadgeUrl;
-            badge.alt = "Disponível no Google Play";
-            badge.width = 135;
-            badge.height = 40;
-            badge.loading = "lazy";
-            playLink.append(badge);
-            footer.append(packageName, playLink);
+            playLink.innerHTML = `
+              <svg class="app-catalog-play-icon" viewBox="0 0 40 44" aria-hidden="true">
+                <path fill="#00d7ff" d="M3 3 24 22 3 41c-1 1-3 0-3-2V5c0-2 2-3 3-2Z" />
+                <path fill="#00e676" d="m3 3 27 16-6 3L3 3Z" />
+                <path fill="#ffca28" d="m3 41 21-19 6 3L3 41Z" />
+                <path fill="#ff5252" d="m30 19 7 2c2 1 2 3 0 4l-7 2-6-5 6-3Z" />
+              </svg>
+              <span class="app-catalog-play-copy">
+                <small>${labels.available}</small>
+                <strong>Google Play</strong>
+              </span>`;
+            const actions = document.createElement("div");
+            actions.className = "app-catalog-actions";
+            const qrLink = document.createElement("a");
+            qrLink.className = "app-catalog-qr";
+            qrLink.href = app.playStoreUrl;
+            qrLink.target = "_blank";
+            qrLink.rel = "noopener noreferrer";
+            qrLink.setAttribute("aria-label", `${labels.qr}: ${app.nome}`);
+            const qrImage = document.createElement("img");
+            qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=114x114&data=${encodeURIComponent(app.playStoreUrl)}`;
+            qrImage.alt = "";
+            qrImage.loading = "lazy";
+            qrLink.append(qrImage);
+            actions.append(playLink, qrLink);
+            footer.append(packageName, actions);
 
-            article.append(header, description, footer);
+            article.append(header, description, gallery, footer);
             return article;
           };
 
-          container.replaceChildren(...appsData.map(createCard));
+          const renderApps = (language = "pt-br") => {
+            const labels = catalogLabels[language] || catalogLabels["pt-br"];
+            const filteredApps = appsData.filter(
+              (app) => activeCategory === "all" || app.categoria === activeCategory,
+            );
+            container.replaceChildren(
+              ...filteredApps.map((app) => createCard(app, language)),
+            );
+            filterContainer.replaceChildren(
+              ...categories.map((category) => {
+                const filter = document.createElement("button");
+                filter.className = "app-catalog-filter";
+                filter.type = "button";
+                filter.textContent = labels[category];
+                filter.setAttribute(
+                  "aria-pressed",
+                  String(category === activeCategory),
+                );
+                filter.addEventListener("click", () => {
+                  activeCategory = category;
+                  renderApps(language);
+                });
+                return filter;
+              }),
+            );
+          };
+
+          renderApps();
+          window.addEventListener("site:languagechange", (event) =>
+            renderApps(event.detail.language),
+          );
         })();
       </script>
       <section class="section open-source" id="codigo">

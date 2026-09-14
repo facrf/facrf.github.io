@@ -22,6 +22,7 @@ O projeto é projetado segundo os princípios de **simplicidade radical**, **alt
 - **Performance e Core Web Vitals:** First Contentful Paint (FCP) quase instantâneo, Largest Contentful Paint (LCP) otimizado e zero dependência de fontes externas ou bibliotecas de terceiros.
 - **Prevenção de FOUC:** Script síncrono ultra-leve no `<head>` determina o tema antes do render inicial, eliminando qualquer cintilação visual.
 - **Internacionalização (i18n):** Suporte nativo a 3 idiomas (Português, Inglês e Espanhol) através de dicionário centralizado (`traducoes.json`) com sincronização em tempo real de metadados SEO, Open Graph e Twitter Cards.
+- **Catálogo de aplicativos:** Seção estática de apps Android, com cards renderizados localmente, descrições em três idiomas e atalhos diretos para o Google Play.
 - **Acessibilidade (WCAG 2.2 AA):**
   - Skip link visível no foco para pular direto ao conteúdo principal.
   - Navegação completa por teclado (incluindo fechamento de menu por tecla `Escape` com restauração de foco).
@@ -120,6 +121,12 @@ Para adicionar ou editar conteúdos multilíngues:
    <p data-i18n="sua_chave">Texto padrão em português</p>
    ```
 4. O script [`site.js`](site.js) sincroniza automaticamente os nós ao carregar ou alternar o idioma.
+
+### Catálogo de aplicativos Android
+
+A seção `#meus-apps` em [`index.html`](index.html) mantém os dados dos apps no array estático `appsData`. Cada item possui o ID do pacote, versão, ícone, prévia oficial, categoria, link direto para a Play Store e descrições em `pt-br`, `en` e `es`. A interface oferece filtros por categoria, prévias vinculadas à página do app e QR Codes que abrem a Play Store em outro dispositivo.
+
+Ao mudar o idioma, [`site.js`](site.js) emite o evento `site:languagechange`, e o catálogo é renderizado novamente com a descrição e os rótulos correspondentes. Para cadastrar um novo app, adicione o objeto completo ao array e informe as três traduções da propriedade `descricao`.
 
 ---
 
