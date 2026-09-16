@@ -3,6 +3,10 @@
   <head>
     <!-- Developed with care by FACRF - https://github.com/facrf -->
     <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self'; object-src 'none'; connect-src 'self' https://api.github.com; script-src 'self'; style-src 'self' 'unsafe-inline'; upgrade-insecure-requests"
+    />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
     <meta name="theme-color" content="#f4f1ea" />
@@ -70,20 +74,10 @@
       href="https://fabianocesar.com/"
     />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/icon-192.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="stylesheet" href="/css/site.css" />
-    <script>
-      (function () {
-        try {
-          const savedTheme = localStorage.getItem("theme");
-          const dark =
-            savedTheme === "dark" ||
-            (!savedTheme &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches);
-          document.documentElement.dataset.theme = dark ? "dark" : "light";
-        } catch (_) {}
-      })();
-    </script>
+    <script src="/theme.js"></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -674,7 +668,7 @@
           ></div>
         </div>
       </section>
-      <script>
+      <script type="text/plain" id="legacy-app-catalog">
         (() => {
           const appsData = [
             {
@@ -688,10 +682,9 @@
                 es: "La jornada nunca termina, ¡pero los sellos deben seguir funcionando!\n\nBienvenido a Estado: Plano Quinquenal, un juego casual idle/clicker de sátira burocrática, totalmente local y sin conexión. Firma formularios, automatiza oficinas públicas ficticias y cumple metas de producción implacables para alcanzar la gloria administrativa.\n\nAquí, la burocracia no es un obstáculo: es tu mayor aliada.",
               },
               categoria: "game",
-              screenshotUrl:
-                "https://play-lh.googleusercontent.com/Sa-7f4zY0Y4vEO-qcej2UzXx_LvzsaPAwktaIYM2eeRqYbAvH8Y_RqsF0b61hl5E_RZRevjfildPfqqQYfwaTQ",
-              iconeUrl:
-                "https://play-lh.googleusercontent.com/dB54M-0OK8VdRD6dJa8Xf-NYYoSL_ShXhh-tY3k9bShNRQGRlVwVTLf2h15Xljz_XvV76HhY81_iOH0IalWmiA=s0-br30",
+              screenshotUrl: "/assets/apps/estado-preview.jpg",
+              iconeUrl: "/assets/apps/estado-icon.jpg",
+              qrUrl: "/assets/apps/estado-qr.png",
               playStoreUrl:
                 "https://play.google.com/store/apps/details?id=com.fabianocesar.estado",
             },
@@ -706,10 +699,9 @@
                 es: "RxAuto es tu organizador completo para cuidar tu vehículo con mayor tranquilidad. Registra abastecimientos, mantenimientos, gastos y recordatorios; sigue indicadores importantes y conserva documentos y fotos protegidos en tu dispositivo.",
               },
               categoria: "utility",
-              screenshotUrl:
-                "https://play-lh.googleusercontent.com/hFaqOYUHePoTkLcvxT_CP1hjakdHJJYXdJZtrRzAGErPoWFkZXpIv_p4YOsJfHQ4ID69s1axBdIGFlFJUbkVPvY",
-              iconeUrl:
-                "https://play-lh.googleusercontent.com/5BT_1tXRcfBVzpvlf8IqRRVTdS5qx23xhghMGYqvOjZ5S_wz9zCBbS6Gny8zo_EMYm9Z_7Ch9CfQDr6huOHbxg=s0-br30",
+              screenshotUrl: "/assets/apps/rxauto-preview.jpg",
+              iconeUrl: "/assets/apps/rxauto-icon.png",
+              qrUrl: "/assets/apps/rxauto-qr.png",
               playStoreUrl:
                 "https://play.google.com/store/apps/details?id=com.facrf.rxauto",
             },
@@ -724,10 +716,9 @@
                 es: "edFin — Finanzas Personales es una aplicación brasileña para organizar tu vida financiera con claridad, privacidad y sin complicaciones.\n\nRegistra cuentas, deudas, importes por cobrar, metas, fondo de emergencia y límites mensuales por categoría. Sigue vencimientos, pagos, cobros y movimientos recientes en un solo lugar.",
               },
               categoria: "finance",
-              screenshotUrl:
-                "https://play-lh.googleusercontent.com/TtIYE5wm0EJsef0OD4o9s1UWXNscJO5CTG3Ft6Ga7u7---7U7h_It2o3PWhhEwshymQmwxF0w1DjUXx8-_t0",
-              iconeUrl:
-                "https://play-lh.googleusercontent.com/bY90ETJKM5dHw-xcy9iHXDgJaIUwgauQcYX1waDBbyP-mV14xjVBDsqyNw8Se9dZOnCA8rOnaecq7hlAps1Z=s0-br30",
+              screenshotUrl: "/assets/apps/edfin-preview.jpg",
+              iconeUrl: "/assets/apps/edfin-icon.png",
+              qrUrl: "/assets/apps/edfin-qr.png",
               playStoreUrl:
                 "https://play.google.com/store/apps/details?id=com.facrf.edfin",
             },
@@ -742,10 +733,9 @@
                 es: "Esta aplicación abarca desde nociones básicas de programación hasta software que ayuda a crear sistemas informatizados.",
               },
               categoria: "education",
-              screenshotUrl:
-                "https://play-lh.googleusercontent.com/pHEMy-tgBglfPsQfj7KllbwM0nsxwK4We2JMzC8cFgP_kyGv_5MHqe7--DhItEtyIpSInb7iQBCg26s8Cm2m",
-              iconeUrl:
-                "https://play-lh.googleusercontent.com/lIJlkmSeCY8nXYVTiXJ4qLS09f7DnOFp9TT6Ssc9sw3b1iXOsGl8ij0F14wqxaoBQpufSUfpgHuAPhVpO5Iu=s0-br30",
+              screenshotUrl: "/assets/apps/appsite-preview.png",
+              iconeUrl: "/assets/apps/appsite-icon.png",
+              qrUrl: "/assets/apps/appsite-qr.png",
               playStoreUrl:
                 "https://play.google.com/store/apps/details?id=com.ideias.appsite",
             },
@@ -870,7 +860,7 @@
             qrLink.rel = "noopener noreferrer";
             qrLink.setAttribute("aria-label", `${labels.qr}: ${app.nome}`);
             const qrImage = document.createElement("img");
-            qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=114x114&data=${encodeURIComponent(app.playStoreUrl)}`;
+            qrImage.src = app.qrUrl;
             qrImage.alt = "";
             qrImage.loading = "lazy";
             qrLink.append(qrImage);
@@ -1084,6 +1074,7 @@
         </div>
       </div>
     </footer>
+    <script src="/apps.js" defer></script>
     <script src="/site.js" defer></script>
   </body>
 </html>

@@ -1,0 +1,29 @@
+name: Validate static site
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Validate HTML
+        run: npx --yes html-validate "**/*.html"
+      - name: Validate JSON and XML
+        run: |
+          jq empty traducoes.json
+          jq empty site.webmanifest
+          xmllint --noout sitemap.xml
+      - name: Verify local catalog assets
+        run: |
+          for asset in $(rg -o '/assets/apps/[A-Za-z0-9._-]+' apps.js); do
+            test -s ".${asset}"
+          done

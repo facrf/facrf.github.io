@@ -44,6 +44,9 @@ facrf.github.io/
 │   └── security.txt          # Metadados de segurança conforme RFC 9116
 ├── css/
 │   └── site.css              # Folha de estilos única, moderna e responsiva
+├── assets/apps/               # Ícones, prévias e QR Codes locais do catálogo
+├── assets/icon-*.png           # Ícones PNG para instalação PWA
+├── apps.js                    # Dados e interface do catálogo de aplicativos
 ├── flags/                    # Bandeiras SVG para referência
 ├── privacidade/              # Política de privacidade da WebView do site
 ├── privacidederxauto/        # Política de privacidade do app RXAuto
@@ -64,6 +67,7 @@ facrf.github.io/
 ├── robots.txt                # Diretivas para buscadores e proteção contra scraping
 ├── security-policy.html      # Diretrizes de divulgação responsável de segurança
 ├── site.js                   # Lógica client-side (i18n, tema, navegação, repositórios)
+├── theme.js                  # Aplicação antecipada do tema salvo ou do sistema
 ├── site.webmanifest          # Manifesto PWA com metadados e ícones
 ├── sitemap.xml               # Mapa do site para indexação em buscadores
 ├── thanks.html               # Hall da Fama / Reconhecimento de pesquisadores de segurança
