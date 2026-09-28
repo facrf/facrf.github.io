@@ -1,32 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<!-- Developed with care by FACRF - https://github.com/facrf -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://fabianocesar.com/</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fabianocesar.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabianocesar.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fabianocesar.com/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fabianocesar.com/" />
+    <lastmod>2026-09-15T23:09:51-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://fabianocesar.com/?lang=en</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fabianocesar.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabianocesar.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fabianocesar.com/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fabianocesar.com/" />
+    <lastmod>2026-09-15T23:09:51-03:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://fabianocesar.com/?lang=es</loc>
+    <xhtml:link rel="alternate" hreflang="pt-BR" href="https://fabianocesar.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabianocesar.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://fabianocesar.com/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://fabianocesar.com/" />
+    <lastmod>2026-09-15T23:09:51-03:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://fabianocesar.com/security-policy.html</loc>
+    <lastmod>2026-08-08T13:41:06-03:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://fabianocesar.com/privacidade/</loc>
+    <lastmod>2026-09-02T19:07:56-03:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://fabianocesar.com/privacy/</loc>
+    <lastmod>2026-09-02T19:07:56-03:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://fabianocesar.com/privacidederxauto/</loc>
+    <lastmod>2026-09-04T16:37:21-03:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://fabianocesar.com/privacidedfin/</loc>
+    <lastmod>2026-09-02T18:42:00-03:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://fabianocesar.com/privacidederadard/</loc>
+    <lastmod>2026-09-25T15:11:26-03:00</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://fabianocesar.com/privacidedetecladoMT/</loc>
+    <lastmod>2026-09-25T15:11:26-03:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://fabianocesar.com/privacyEstado/</loc>
+    <lastmod>2026-09-09T02:20:21-03:00</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
