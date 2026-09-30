@@ -128,9 +128,11 @@ Para adicionar ou editar conteúdos multilíngues:
 
 ### Catálogo de aplicativos Android
 
-A seção `#meus-apps` em [`index.html`](index.html) mantém os dados dos apps no array estático `appsData`. Cada item possui o ID do pacote, versão, ícone, prévia oficial, categoria, link direto para a Play Store e descrições em `pt-br`, `en` e `es`. A interface oferece filtros por categoria, prévias vinculadas à página do app e QR Codes que abrem a Play Store em outro dispositivo.
+A seção `#meus-apps` em [`index.html`](index.html) é preenchida pelo array estático `appsData` em [`apps.js`](apps.js). Cada item possui o ID do pacote, ícone e prévia oficiais armazenados em `assets/apps/`, QR Code local, categoria, link direto para a Play Store e descrições em `pt-br`, `en` e `es`. A versão é exibida quando informada; deixe-a ausente quando não estiver disponível na página da Play Store. A interface oferece filtros por categoria, prévias vinculadas à página do app e QR Codes que abrem a Play Store em outro dispositivo.
 
-Ao mudar o idioma, [`site.js`](site.js) emite o evento `site:languagechange`, e o catálogo é renderizado novamente com a descrição e os rótulos correspondentes. Para cadastrar um novo app, adicione o objeto completo ao array e informe as três traduções da propriedade `descricao`.
+Ao mudar o idioma, [`site.js`](site.js) emite o evento `site:languagechange`, e o catálogo é renderizado novamente com a descrição e os rótulos correspondentes. Para cadastrar um novo app, adicione o objeto ao array em `apps.js`, informe as três traduções da propriedade `descricao` e salve ícone, prévia e QR Code em `assets/apps/`.
+
+Radar de Domínios (`com.fabianocesar.radardomain`) e TecladoMT (`com.fabianocesar.tecladomt`) foram adicionados com resumos baseados nas respectivas páginas da Play Store. Ambos usam a categoria `utility`; seus números de versão não são exibidos porque a Play Store não os informa publicamente nessas páginas.
 
 ---
 
