@@ -34,6 +34,27 @@ O projeto é projetado segundo os princípios de **simplicidade radical**, **alt
   - Políticas de privacidade dedicadas para aplicativos Android em conformidade com a LGPD e Google Play Store.
   - Bloqueio preventivo de robôs de coleta automatizada de IA em `robots.txt`.
 
+### Rastreamento e indexação no Google
+
+O [`robots.txt`](robots.txt) permite o rastreamento geral (`User-agent: *`) e declara permissão explícita para `Googlebot` e `Google-InspectionTool`. A regra específica reforça a intenção, mas não altera a permissão geral que já existia. O bloqueio de `Google-Extended` controla usos de IA e [não impede a inclusão na Pesquisa Google](https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers#google-extended).
+
+Uma versão antiga do arquivo bloqueava todos os robôs. Por isso, um relatório anterior de **“Bloqueada pelo robots.txt”** no Search Console não comprova que a regra atual ainda bloqueie a URL. Em 2 de outubro de 2026, a verificação pública encontrou:
+
+| URL | Resposta esperada |
+| :--- | :--- |
+| `https://fabianocesar.com/` e `/privacy/` | HTTP 200 |
+| Versões `http` e `www` da página inicial | Redirecionamento para `https://fabianocesar.com/` |
+| `/privacidade.htm` e `/galeria` | HTTP 404; páginas inexistentes |
+
+Para conferir um aviso após a publicação:
+
+1. No Search Console, abra **Inspeção de URL** para a URL exata e execute **Testar URL publicada**. Confira **Rastreamento permitido?** e a regra de `robots.txt` indicada.
+2. Consulte o **relatório de robots.txt** para cada protocolo e host (`http`, `https`, com e sem `www`). O arquivo do domínio canônico está em `https://fabianocesar.com/robots.txt`.
+3. Se o teste publicado ainda apontar bloqueio, confira a resposta entregue ao Googlebot e as regras de segurança da Cloudflare. O arquivo deste repositório, por si só, não revela bloqueios configurados na CDN.
+4. Depois que o teste confirmar acesso, use **Validar correção** no relatório. URLs antigas que retornam 404 não precisam ser indexadas.
+
+Referências: [desbloquear página](https://support.google.com/webmasters/answer/13144973?hl=pt-BR), [relatório de robots.txt](https://support.google.com/webmasters/answer/6062598?hl=pt-BR) e [comportamento de URLs 404](https://support.google.com/webmasters/answer/2445990?hl=pt-BR).
+
 ---
 
 ## 📁 Estrutura do Repositório

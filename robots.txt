@@ -1,6 +1,11 @@
 User-agent: *
 Allow: /
 
+# Permite explicitamente o rastreamento e a inspeção da Pesquisa Google.
+User-agent: Googlebot
+User-agent: Google-InspectionTool
+Allow: /
+
 # Evita uso do conteúdo para treinamento, sem prejudicar buscadores tradicionais.
 User-agent: GPTBot
 Disallow: /
